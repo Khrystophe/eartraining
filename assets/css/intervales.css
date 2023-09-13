@@ -1,0 +1,54 @@
+:root {
+  --gradient: linear-gradient(to left top, #5791ff 10%, #004ede 90%) !important;
+}
+
+body {
+  background: #111 !important;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+}
+
+.card {
+  background: #222;
+  border: 1px solid #5791ff;
+  color: rgba(250, 250, 250, 0.8);
+  margin-bottom: 2rem;
+}
+
+.btn {
+  background-clip: border-box;
+  border: 3px solid;
+  border-image-slice: 1;
+  background: var(--gradient) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  border-image-source: var(--gradient) !important;
+  text-decoration: none;
+  transition: all 0.4s ease;
+}
+
+.btn:hover,
+.btn:focus {
+  background-clip: border-box;
+  background: var(--gradient) !important;
+  -webkit-background-clip: none !important;
+  -webkit-text-fill-color: #fff !important;
+  border: 3px solid #fff !important;
+  box-shadow: #222 1px 0 10px;
+}
+
+.music-score-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .width {
+    width: 15rem;
+    .note {
+      display: flex;
+      justify-content: center;
+    }
+ 
+}
+  }
