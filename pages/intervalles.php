@@ -8,7 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <title>Exercice de reconnaissance d'intervalles</title>
 
-    <link rel="stylesheet" href="../assets/css/intervales.css" />
+    <link rel="stylesheet" href="../assets/css/intervalles.css" />
 </head>
 
 <body>
@@ -83,7 +83,19 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/abcjs/6.2.2/abcjs-basic-min.min.js" integrity="sha512-REXLcx385NL3ZWosam5LzLJoA0AkfeVdW94IQURSM/Gl6EyrS0hS3LtqR094d00lsicEVAprWA5SUTD5oljapg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-    <script src="../js/intervales.js"></script>
+    <script src="../js/intervalles/variables.js"></script>
+    <script src="../js/intervalles/displayNotesOnStave.js"></script>
+    <script src="../js/intervalles/processNote.js"></script>
+    <script src="../js/intervalles/playSound.js"></script>
+    <script src="../js/intervalles/generateNewNotes.js"></script>
+    <script src="../js/intervalles/tessiture.js"></script>
+    <script src="../js/intervalles/clearStaves.js"></script>
+    <script src="../js/intervalles/playButton.js"></script>
+    <script src="../js/intervalles/playModes.js"></script>
+    <script src="../js/intervalles/reponseButtons.js"></script>
+    <script src="../js/intervalles/checkAnswer.js"></script>
+    <script src="../js/intervalles/getIntervalName.js"></script>
+    <script src="../js/intervalles/repeatButton.js"></script>
 
 
 </html>
