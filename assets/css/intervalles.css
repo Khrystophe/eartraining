@@ -10,11 +10,15 @@ body {
   /* justify-content: center; */
 }
 
-.card {
-  background: #222;
-  border: 1px solid #5791ff;
-  color: rgba(250, 250, 250, 0.8);
-  margin-bottom: 2rem;
+h1, h2{
+  text-align: center;
+  margin: 1rem;
+}
+
+.tessiture-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .btn {
@@ -29,6 +33,10 @@ body {
   transition: all 0.4s ease;
 }
 
+.reponse{
+  width: 25vw;
+}
+
 .btn:hover,
 .btn:focus {
   background-clip: border-box;
@@ -39,16 +47,43 @@ body {
   box-shadow: #222 1px 0 10px;
 }
 
-.music-score-container {
+.score-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  .width {
-    width: 15rem;
-    .note {
-      display: flex;
-      justify-content: center;
-    }
- 
+  margin-bottom: 1rem;
 }
+
+.response-container{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.responseText-h5 {
+  white-space: pre-line;
+}
+
+.music-score-container {
+  display: flex;
+  flex-direction: column;
+  height: 11rem;
+  margin: 2rem;
+  justify-content: center;
+  .staves-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    .width {
+      width: 9.5rem;
+      .note {
+        display: flex;
+        justify-content: center;
+        flex-direction: column-reverse;
+        align-items: center;
+      }
+    }
   }
+}

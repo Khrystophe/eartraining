@@ -1,25 +1,25 @@
 // Affichage des notes sur la portée et de leur nom
 function displayNotesOnStave(note1, note2) {
+  console.log(octave);
   // Création des divs pour les portées et le nom des notes
   var responsetext = document.createElement("h5");
+  responsetext.classList.add ("responseText-h5");
   document.getElementById("response").appendChild(responsetext);
-  if (interval == "Unisson") {
-    console.log(interval);
+
+  if (octave >= 1 && interval != "Unisson") {
     responsetext.textContent =
-      "Réponse à la question précédente :\n" + interval;
+      "Réponse à la question précédente :\n" +
+      octave +
+      " oct. + " +
+      interval +
+      " " +
+      currentMode;
+  } else if (octave >= 1 && interval == "Unisson") {
+    responsetext.textContent =
+      "Réponse à la question précédente :\n" + octave + " oct. " + currentMode;
   } else {
-    if (octave >= 1) {
-      responsetext.textContent =
-        "Réponse à la question précédente :\n" +
-        octave +
-        " oct. + " +
-        interval +
-        " " +
-        currentMode;
-    } else {
-      responsetext.textContent =
-        "Réponse à la question précédente :\n" + interval + " " + currentMode;
-    }
+    responsetext.textContent =
+      "Réponse à la question précédente :\n" + interval + " " + currentMode;
   }
 
   var abcDiv1 = document.createElement("div");
@@ -31,12 +31,23 @@ function displayNotesOnStave(note1, note2) {
   var textNote1 = document.createElement("div");
   document.getElementById("note1").appendChild(textNote1);
 
+  var notenumber1 = document.createElement("div");
+  document.getElementById("note1").appendChild(notenumber1);
+  notenumber1.textContent = "première note :";
+
   var textNote2 = document.createElement("div");
   document.getElementById("note2").appendChild(textNote2);
+
+  var notenumber2 = document.createElement("div");
+  document.getElementById("note2").appendChild(notenumber2);
+  notenumber2.textContent = "deuxième note :";
 
   // Pour calculer l'odre d'affcihage des portées
   var indice1 = gammeChromatique.indexOf(note1);
   var indice2 = gammeChromatique.indexOf(note2);
+
+  console.log(indice1);
+  console.log(indice2);
   // Pour déterminer quelle clé utiliser
   var keyIndice1 = "";
   var keyIndice2 = "";
@@ -78,7 +89,7 @@ function displayNotesOnStave(note1, note2) {
       keyIndice2 = indice1;
       textNote2.textContent = note1;
     }
-  } else if (currentMode === "harmonique") {
+  } else if (currentMode === "harmonique" || currentMode === "repété") {
     processedNote1 = processNote(note1);
     keyIndice1 = indice1;
     textNote1.textContent = note1;
@@ -89,55 +100,107 @@ function displayNotesOnStave(note1, note2) {
 
   // Créez la notation ABC avec les bons visualTranspose pour chaque voix
   if (keyIndice1 >= 39) {
-    var abcNotation1 = `X:1
-    L:1/4
-    K:C 
-    %%staves {(PianoRightHand) (PianoLeftHand)}
-    V:PianoRightHand clef=treble
-    V:PianoLeftHand clef=bass
-    [V:PianoRightHand]|${processedNote1.baseNote}|`;
+    if (processedNote1.baseNote.includes(" ")) {
+      var parts = processedNote1.baseNote.split(" ");
+      var abcNotation1 = `X:1
+      L:1/4
+      K:C 
+      %%score (T1)
+      V:T1 clef=treble
+      [V:T1]|[${parts[0]}${parts[1]}|`;
 
-    // Affichez la notation ABC à l'aide d'ABCjs
-    ABCJS.renderAbc(abcDiv1, abcNotation1, {
-      visualTranspose: processedNote1.visualTranspose,
-    });
+      // Affichez la notation ABC à l'aide d'ABCjs
+      ABCJS.renderAbc(abcDiv1, abcNotation1, {
+        visualTranspose: processedNote1.visualTranspose,
+      });
+    } else {
+      var abcNotation1 = `X:1
+      L:1/4
+      K:C 
+      %%score (T1)
+      V:T1 clef=treble
+      [V:T1]|${processedNote1.baseNote}|`;
+
+      ABCJS.renderAbc(abcDiv1, abcNotation1, {
+        visualTranspose: processedNote1.visualTranspose,
+      });
+    }
   } else {
-    var abcNotation1 = `X:1
-    L:1/4
-    K:C 
-    %%staves {(PianoRightHand) (PianoLeftHand)}
-    V:PianoRightHand clef=treble
-    V:PianoLeftHand clef=bass
-    [V:PianoLeftHand]|${processedNote1.baseNote}|`;
+    if (processedNote1.baseNote.includes(" ")) {
+      var parts = processedNote1.baseNote.split(" ");
+      var abcNotation1 = `X:1
+      L:1/4
+      K:C 
+      %%score (T1)
+      V:T1 clef=bass
+      [V:T1]|[${parts[0]}${parts[1]}|`;
 
-    ABCJS.renderAbc(abcDiv1, abcNotation1, {
-      visualTranspose: processedNote1.visualTranspose,
-    });
+      ABCJS.renderAbc(abcDiv1, abcNotation1, {
+        visualTranspose: processedNote1.visualTranspose,
+      });
+    } else {
+      var abcNotation1 = `X:1
+      L:1/4
+      K:C 
+      %%score (T1)
+      V:T1 clef=bass
+      [V:T1]|${processedNote1.baseNote}|`;
+
+      ABCJS.renderAbc(abcDiv1, abcNotation1, {
+        visualTranspose: processedNote1.visualTranspose,
+      });
+    }
   }
 
   if (keyIndice2 >= 39) {
-    var abcNotation2 = `X:1
+    if (processedNote2.baseNote.includes(" ")) {
+      var parts = processedNote2.baseNote.split(" ");
+      var abcNotation2 = `X:1
       L:1/4
       K:C 
-      %%staves {(PianoRightHand) (PianoLeftHand)}
-      V:PianoRightHand clef=treble
-      V:PianoLeftHand clef=bass
-      [V:PianoRightHand]|${processedNote2.baseNote}|`;
+      %%score (T1)
+      V:T1 clef=treble
+      [V:T1]|[${parts[0]}${parts[1]}]|`;
 
-    ABCJS.renderAbc(abcDiv2, abcNotation2, {
-      visualTranspose: processedNote2.visualTranspose,
-    });
+      ABCJS.renderAbc(abcDiv2, abcNotation2, {
+        visualTranspose: processedNote2.visualTranspose,
+      });
+    } else {
+      var abcNotation2 = `X:1
+      L:1/4
+      K:C 
+      %%score (T1)
+      V:T1 clef=treble
+      [V:T1]|${processedNote2.baseNote}|`;
+
+      ABCJS.renderAbc(abcDiv2, abcNotation2, {
+        visualTranspose: processedNote2.visualTranspose,
+      });
+    }
   } else {
-    var abcNotation2 = `X:1
+    if (processedNote2.baseNote.includes(" ")) {
+      var parts = processedNote2.baseNote.split(" ");
+      var abcNotation2 = `X:1
       L:1/4
       K:C 
-      %%staves {(PianoRightHand) (PianoLeftHand)}
-      V:PianoRightHand clef=treble
-      V:PianoLeftHand clef=bass
-      [V:PianoLeftHand]|${processedNote2.baseNote}|`;
+      %%score (T1)
+      V:T1 clef=bass
+      [V:T1]|[${parts[0]}${parts[1]}]|`;
 
-    ABCJS.renderAbc(abcDiv2, abcNotation2, {
-      visualTranspose: processedNote2.visualTranspose,
-    });
+      ABCJS.renderAbc(abcDiv2, abcNotation2, {
+        visualTranspose: processedNote2.visualTranspose,
+      });
+    } else {
+      var abcNotation2 = `X:1
+      L:1/4
+      K:C 
+      %%score (T1)
+      V:T1 clef=bass
+      [V:T1]|${processedNote2.baseNote}|`;
+
+      ABCJS.renderAbc(abcDiv2, abcNotation2, {
+        visualTranspose: processedNote2.visualTranspose,
+      });
+    }
   }
 }

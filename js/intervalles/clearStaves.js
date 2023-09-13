@@ -6,7 +6,7 @@ function clearStaves() {
     var note1Div = document.getElementById("note1");
     var note2Div = document.getElementById("note2");
   
-    // Supprimez tous les éléments enfants des divs correspondantes
+    // Supprime tous les éléments enfants des divs correspondantes
     while (response.firstChild) {
       response.removeChild(response.firstChild);
     }
