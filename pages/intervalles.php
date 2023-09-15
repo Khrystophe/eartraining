@@ -92,18 +92,24 @@
         <button id="repeatButton" class="btn ">Répéter l'intervalle</button>
     </div>
 
-    <button id="select-interval-1">Sélectionner Interval 1</button>
-    <button id="select-interval-2">Sélectionner Interval 2b</button>
-    <button id="select-interval-3">Sélectionner Interval 2</button>
-    <button id="select-interval-4">Sélectionner Interval 3b</button>
-    <button id="select-interval-5">Sélectionner Interval 3</button>
-    <button id="select-interval-6">Sélectionner Interval 4</button>
-    <button id="select-interval-7">Sélectionner Interval 5b</button>
-    <button id="select-interval-8">Sélectionner Interval 5</button>
-    <button id="select-interval-9">Sélectionner Interval 6b</button>
-    <button id="select-interval-10">Sélectionner Interval 6</button>
-    <button id="select-interval-11">Sélectionner Interval 7b</button>
-    <button id="select-interval-12">Sélectionner Interval 7</button>
+    <h2>Choisissez les intervalles :</h2>
+
+    <div class="selected-intervals-container">
+        <div class="selected-intervals-buttons-container">
+            <button class="btn interval" id="select-interval-1">1</button>
+            <button class="btn interval" id="select-interval-2">2b</button>
+            <button class="btn interval" id="select-interval-3">2</button>
+            <button class="btn interval" id="select-interval-4">3b</button>
+            <button class="btn interval" id="select-interval-5">3</button>
+            <button class="btn interval" id="select-interval-6">4</button>
+            <button class="btn interval" id="select-interval-7">5b</button>
+            <button class="btn interval" id="select-interval-8">5</button>
+            <button class="btn interval" id="select-interval-9">6b</button>
+            <button class="btn interval" id="select-interval-10">6</button>
+            <button class="btn interval" id="select-interval-11">7b</button>
+            <button class="btn interval" id="select-interval-12">7</button>
+        </div>
+    </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/abcjs/6.2.2/abcjs-basic-min.min.js" integrity="sha512-REXLcx385NL3ZWosam5LzLJoA0AkfeVdW94IQURSM/Gl6EyrS0hS3LtqR094d00lsicEVAprWA5SUTD5oljapg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 

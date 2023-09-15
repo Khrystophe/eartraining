@@ -32,6 +32,8 @@ var selectedIntervals = {
           intervalIndices += ",";
         }
         intervalIndices += selectedIntervals[intervalKey];
+
+        selectButton.classList.add("selected-interval");
       } else {
         // Suppression de l'intervalle sélectionné de intervalIndices
         intervalIndices = intervalIndices.replace(
@@ -44,8 +46,10 @@ var selectedIntervals = {
         intervalIndices = intervalIndices.replace(/^,/, "");
         // Supprimer une virgule en trop en fin de chaîne s'il y en a
         intervalIndices = intervalIndices.replace(/,$/, "");
+
+        selectButton.classList.remove("selected-interval");
       }
-  
+      
       console.log(intervalIndices);
     });
   }
