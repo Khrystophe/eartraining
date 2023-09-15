@@ -1,6 +1,11 @@
 document.getElementById("showReponseButton").addEventListener("click", function () {
     clearStaves();
 
+    var playButton = document.getElementById("playButton");
+
+    playButton.classList.remove("play-stop");
+    playButton.classList.add("play-ok");
+
     answerRevealed = true;
   
     if (isScoreDisplayed) {

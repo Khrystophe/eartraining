@@ -1,13 +1,18 @@
 :root {
   --gradient1: linear-gradient(
     to left top,
-    #5791ff 10%,
-    #004ede 90%
+    #0059ff 10%,
+    #002d80 90%
   ) !important;
   --gradient2: linear-gradient(
     to left top,
-    #ff5757 10%,
-    #de0000 90%
+    #ff0000 10%,
+    #930000 90%
+  ) !important;
+  --gradient3: linear-gradient(
+    to left top,
+    #33ff00 10%,
+    #1b9500 90%
   ) !important;
 }
 
@@ -25,38 +30,6 @@ h2 {
   margin: 1rem;
 }
 
-.tessiture-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.btn {
-  border: 3px solid transparent;
-  background: var(--gradient1);
-  color: #fff;
-  font-weight: 500;
-  text-decoration: none;
-  transition: all 0.4s ease;
-  margin: 1px;
-}
-
-.reponse-incorrecte {
-  background: var(--gradient2);
-  color: #111;
-  font-weight: 500;
-}
-
-.reponse-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.reponse {
-  width: 19vw;
-}
-
 .score-container {
   display: flex;
   flex-direction: column;
@@ -64,7 +37,7 @@ h2 {
   margin-bottom: 1rem;
 }
 
-.response-container {
+.music-score-response-container {
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -97,3 +70,67 @@ h2 {
     }
   }
 }
+.tessiture-slider-container{
+  display: flex;
+  justify-content: center;
+}
+
+.tessiture-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 1rem;
+  max-width: 850px;
+}
+
+.btn {
+  border: 3px solid transparent;
+  background: var(--gradient1);
+  color: #fff;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.4s ease;
+  margin: 1px;
+}
+.play-ok {
+  background: var(--gradient3);
+}
+
+.play-stop{
+  background: var(--gradient2);
+}
+
+.play-show-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.reponse-incorrecte {
+  background: var(--gradient2);
+  color: #111;
+  font-weight: 500;
+}
+
+.response-container{
+  display: flex;
+  justify-content: center;
+}
+.response-buttons-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 1rem;
+  max-width: 850px;
+}
+
+.reponse {
+  max-width: 120px;
+  width: 19vw;
+}
+
+.repeat-container{
+  display: flex;
+  justify-content: center;
+}
+

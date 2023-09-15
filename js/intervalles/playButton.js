@@ -1,9 +1,11 @@
 // Gestionnaire d'événements pour le bouton "Jouer un interval"
 document.getElementById("playButton").addEventListener("click", function () {
+
   if (answerGiven || !isScoreDisplayed || answerRevealed) {
-    console.log(answerGiven);
-    console.log(answerRevealed);
-    console.log(isScoreDisplayed);
+
+    this.classList.remove("play-ok");
+    this.classList.add("play-stop");
+    
     generateNewNotes();
  
     if (answerRevealed) {
