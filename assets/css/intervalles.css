@@ -1,5 +1,14 @@
 :root {
-  --gradient: linear-gradient(to left top, #5791ff 10%, #004ede 90%) !important;
+  --gradient1: linear-gradient(
+    to left top,
+    #5791ff 10%,
+    #004ede 90%
+  ) !important;
+  --gradient2: linear-gradient(
+    to left top,
+    #ff5757 10%,
+    #de0000 90%
+  ) !important;
 }
 
 body {
@@ -23,15 +32,19 @@ h2 {
 }
 
 .btn {
-  background-clip: border-box;
-  border: 3px solid;
-  border-image-slice: 1;
-  background: var(--gradient) !important;
-  -webkit-background-clip: text !important;
-  -webkit-text-fill-color: transparent !important;
-  border-image-source: var(--gradient) !important;
+  border: 3px solid transparent;
+  background: var(--gradient1);
+  color: #fff;
+  font-weight: 500;
   text-decoration: none;
   transition: all 0.4s ease;
+  margin: 1px;
+}
+
+.reponse-incorrecte {
+  background: var(--gradient2);
+  color: #111;
+  font-weight: 500;
 }
 
 .reponse-container {
@@ -41,17 +54,7 @@ h2 {
 }
 
 .reponse {
-  width: 20vw;
-}
-
-.btn:hover,
-.btn:focus {
-  background-clip: border-box;
-  background: var(--gradient) !important;
-  -webkit-background-clip: none !important;
-  -webkit-text-fill-color: #fff !important;
-  border: 3px solid #fff !important;
-  box-shadow: #222 1px 0 10px;
+  width: 19vw;
 }
 
 .score-container {

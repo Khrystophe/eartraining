@@ -1,48 +1,36 @@
 // Fonction pour vérifier la réponse de l'utilisateur
-function checkAnswer(userResponse) {
-    var note1 = gammeChromatique.indexOf(initialNote1);
-    var note2 = gammeChromatique.indexOf(initialNote2);
-    var distance = Math.abs(note2 - note1);
-    interval = getIntervalName(distance);
+function checkAnswer(userResponse, button) {
+  var note1 = gammeChromatique.indexOf(initialNote1);
+  var note2 = gammeChromatique.indexOf(initialNote2);
+  var distance = Math.abs(note2 - note1);
+  interval = getIntervalName(distance);
 
-    // Suppression du score précedent
-    var scoreDiv = document.getElementById("scoreValue");
-    
-    while (scoreDiv.firstChild) {
-      scoreDiv.removeChild(scoreDiv.firstChild);
-    }
+  // Suppression du score précedent
+  var scoreDiv = document.getElementById("scoreValue");
 
-    // Création div score
-    var scoreDiv = document.createElement("div");
-    document.getElementById("scoreValue").appendChild(scoreDiv);
-
-  
-    if (userResponse === interval) {
-      alert("Correct ! La réponse est " + interval);
-      // Générer de nouvelles notes après une réponse correcte
-      var [newNote1, newNote2] = generateNewNotes();
-      // Pour que l'utilisateur ne puisse pas générer un nouvel intervalle deux fois de suite
-      answerGiven = false;
-      var modes = ["ascendante", "descendante", "harmonique"];
-      var randomMode = modes[Math.floor(Math.random() * modes.length)];
-      if (randomMode === "ascendante") {
-        playAscending(newNote1, newNote2);
-        currentMode = "ascendante";
-      } else if (randomMode === "descendante") {
-        playDescending(newNote1, newNote2);
-        currentMode = "descendante";
-      } else if (randomMode === "harmonique") {
-        playSimultaneous(newNote1, newNote2);
-        currentMode = "harmonique";
-      }
-      score++;
-      scoreDiv.textContent = score;
-      isScoreDisplayed = true; // Mettre à jour l'état de l'affichage de la portée
-    } else {
-      score = 0;
-      scoreDiv.textContent = score;
-      // Pour que l'utilisateur ne puisse pas générer un nouvel intervalle sans avoir donné la bonne réponse ou révélé la bonne réponse
-      answerGiven = false;
-      alert("Incorrect. Réessayez !");
-    }
+  while (scoreDiv.firstChild) {
+    scoreDiv.removeChild(scoreDiv.firstChild);
   }
+
+  // Création div score
+  var scoreDiv = document.createElement("div");
+  document.getElementById("scoreValue").appendChild(scoreDiv);
+
+  if (userResponse === interval) {
+    // Générer de nouvelles notes après une réponse correcte
+    generateNewNotes();
+
+    // Pour que l'utilisateur ne puisse pas générer un nouvel intervalle deux fois de suite
+    answerGiven = false;
+
+    score++;
+    scoreDiv.textContent = score;
+    isScoreDisplayed = true; // Mettre à jour l'état de l'affichage de la portée
+  } else {
+    score = 0;
+    scoreDiv.textContent = score;
+    // Pour que l'utilisateur ne puisse pas générer un nouvel intervalle sans avoir donné la bonne réponse ou révélé la bonne réponse
+    answerGiven = false;
+    button.classList.add("reponse-incorrecte");
+  }
+}

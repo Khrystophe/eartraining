@@ -7,7 +7,7 @@ reponseButtons.forEach(function (button) {
     interval = getIntervalName(distance);
     // Pour que l'utilisateur génére une nouvelle note à l'ouverture de l'exercice
     if (isScoreDisplayed && !answerRevealed) {
-      checkAnswer(interval);
+      checkAnswer(interval, button);
     } else {
       // Suppression du score précedent
       var scoreDiv = document.getElementById("scoreValue");
