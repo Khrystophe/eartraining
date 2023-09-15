@@ -27,7 +27,7 @@ document.getElementById("repeatButton").addEventListener("click", function () {
           playSound(initialNote1);
         }, 1000); // Jouer la première note après 1 seconde
       }
-    } else if (currentMode === "harmonique") {
+    } else if (currentMode === "harmonique" || currentMode === "repété") {
       playSound(initialNote1);
       playSound(initialNote2);
     }

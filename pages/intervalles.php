@@ -53,8 +53,8 @@
     <button id="playButton" class="btn btn-primary">Jouer un intervalle</button>
     <button id="showReponseButton" class="btn btn-primary">Voir la réponse</button>
 
-    <div>
-        <h2>Choisissez la réponse :</h2>
+    <h2>Choisissez la réponse :</h2>
+    <div class="reponse-container">
         <?php
         // Tableau associatif des réponses possibles et de leur distance en demi-tons
         $reponses = [

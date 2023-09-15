@@ -3,25 +3,42 @@ function displayNotesOnStave(note1, note2) {
   console.log(octave);
   // Création des divs pour les portées et le nom des notes
   var responsetext = document.createElement("h5");
-  responsetext.classList.add ("responseText-h5");
+  responsetext.classList.add("responseText-h5");
   document.getElementById("response").appendChild(responsetext);
 
-  if (octave >= 1 && interval != "Unisson") {
-    responsetext.textContent =
-      "Réponse à la question précédente :\n" +
-      octave +
-      " oct. + " +
-      interval +
-      " " +
-      currentMode;
-  } else if (octave >= 1 && interval == "Unisson") {
-    responsetext.textContent =
-      "Réponse à la question précédente :\n" + octave + " oct. " + currentMode;
+  if (!answerRevealed) {
+    if (octave >= 1 && interval != "Unisson") {
+      responsetext.textContent =
+        "Bien joué ! La réponse est :\n" +
+        octave +
+        " oct. + " +
+        interval +
+        " " +
+        currentMode;
+    } else if (octave >= 1 && interval == "Unisson") {
+      responsetext.textContent =
+        "Bien joué ! La réponse est :\n" + octave + " oct. " + currentMode;
+    } else {
+      responsetext.textContent =
+        "Bien joué ! La réponse est :\n" + interval + " " + currentMode;
+    }
   } else {
-    responsetext.textContent =
-      "Réponse à la question précédente :\n" + interval + " " + currentMode;
+    if (octave >= 1 && interval != "Unisson") {
+      responsetext.textContent =
+        "Perseverez ! La réponse était :\n" +
+        octave +
+        " oct. + " +
+        interval +
+        " " +
+        currentMode;
+    } else if (octave >= 1 && interval == "Unisson") {
+      responsetext.textContent =
+        "Perseverez ! La réponse était :\n" + octave + " oct. " + currentMode;
+    } else {
+      responsetext.textContent =
+        "Perseverez ! La réponse était :\n" + interval + " " + currentMode;
+    }
   }
-
   var abcDiv1 = document.createElement("div");
   document.getElementById("music-score1").appendChild(abcDiv1);
 

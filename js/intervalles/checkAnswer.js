@@ -21,6 +21,8 @@ function checkAnswer(userResponse) {
       alert("Correct ! La réponse est " + interval);
       // Générer de nouvelles notes après une réponse correcte
       var [newNote1, newNote2] = generateNewNotes();
+      // Pour que l'utilisateur ne puisse pas générer un nouvel intervalle deux fois de suite
+      answerGiven = false;
       var modes = ["ascendante", "descendante", "harmonique"];
       var randomMode = modes[Math.floor(Math.random() * modes.length)];
       if (randomMode === "ascendante") {
@@ -39,6 +41,8 @@ function checkAnswer(userResponse) {
     } else {
       score = 0;
       scoreDiv.textContent = score;
+      // Pour que l'utilisateur ne puisse pas générer un nouvel intervalle sans avoir donné la bonne réponse ou révélé la bonne réponse
+      answerGiven = false;
       alert("Incorrect. Réessayez !");
     }
   }

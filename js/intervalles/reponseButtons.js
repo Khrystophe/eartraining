@@ -2,6 +2,7 @@
 var reponseButtons = document.querySelectorAll(".reponse");
 reponseButtons.forEach(function (button) {
   button.addEventListener("click", function () {
+    answerGiven = true;
     var distance = parseInt(button.getAttribute("data-distance"));
     interval = getIntervalName(distance);
     // Pour que l'utilisateur génére une nouvelle note à l'ouverture de l'exercice
