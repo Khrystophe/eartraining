@@ -36,18 +36,18 @@
     <div class="tessiture-slider-container">
         <div class="tessiture-container">
             <h2>Choisissez la tessiture :</h2>
-        <div>
-            <label for="tessiture">De :</label>
-            <span id="tessitureValue"></span>
+            <div>
+                <label for="tessiture">De :</label>
+                <span id="tessitureValue"></span>
+            </div>
+            <input type="range" id="tessiture" class="form-range" name="tessiture" min="0" max="87" step="1">
+            <div>
+                <label for="tessiture2">à :</label>
+                <span id="tessitureValue2"></span>
+            </div>
+            <input type="range" id="tessiture2" class="form-range" name="tessiture2" min="0" max="87" step="1">
         </div>
-        <input type="range" id="tessiture" class="form-range" name="tessiture" min="0" max="87" step="1">
-        <div>
-            <label for="tessiture2">à :</label>
-            <span id="tessitureValue2"></span>
-        </div>
-        <input type="range" id="tessiture2" class="form-range" name="tessiture2" min="0" max="87" step="1">
     </div>
-</div>
 
 
     <div class="play-show-container">
@@ -92,6 +92,18 @@
         <button id="repeatButton" class="btn ">Répéter l'intervalle</button>
     </div>
 
+    <button id="select-interval-1">Sélectionner Interval 1</button>
+    <button id="select-interval-2">Sélectionner Interval 2b</button>
+    <button id="select-interval-3">Sélectionner Interval 2</button>
+    <button id="select-interval-4">Sélectionner Interval 3b</button>
+    <button id="select-interval-5">Sélectionner Interval 3</button>
+    <button id="select-interval-6">Sélectionner Interval 4</button>
+    <button id="select-interval-7">Sélectionner Interval 5b</button>
+    <button id="select-interval-8">Sélectionner Interval 5</button>
+    <button id="select-interval-9">Sélectionner Interval 6b</button>
+    <button id="select-interval-10">Sélectionner Interval 6</button>
+    <button id="select-interval-11">Sélectionner Interval 7b</button>
+    <button id="select-interval-12">Sélectionner Interval 7</button>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/abcjs/6.2.2/abcjs-basic-min.min.js" integrity="sha512-REXLcx385NL3ZWosam5LzLJoA0AkfeVdW94IQURSM/Gl6EyrS0hS3LtqR094d00lsicEVAprWA5SUTD5oljapg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
@@ -109,6 +121,9 @@
     <script src="../js/intervalles/getIntervalName.js"></script>
     <script src="../js/intervalles/repeatButton.js"></script>
     <script src="../js/intervalles/showReponseButton.js"></script>
+    <script src="../js/intervalles/selectedIntervalsButtons.js"></script>
+
+</body>
 
 
 </html>

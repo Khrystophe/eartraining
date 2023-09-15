@@ -4,10 +4,11 @@ reponseButtons.forEach(function (button) {
   button.addEventListener("click", function () {
     answerGiven = true;
     var distance = parseInt(button.getAttribute("data-distance"));
-    interval = getIntervalName(distance);
+    console.log(distance);
+    var userResponse = getIntervalName(distance);
     // Pour que l'utilisateur génére une nouvelle note à l'ouverture de l'exercice
     if (isScoreDisplayed && !answerRevealed) {
-      checkAnswer(interval, button);
+      checkAnswer(userResponse, button);
     } else {
       // Suppression du score précedent
       var scoreDiv = document.getElementById("scoreValue");

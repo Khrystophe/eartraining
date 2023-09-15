@@ -1,4 +1,3 @@
-// Fonction pour générer de nouvelles notes et les mettre à jour dans le HTML
 function generateNewNotes() {
   clearStaves();
 
@@ -19,31 +18,45 @@ function generateNewNotes() {
 
     displayNotesOnStave(initialNote1, initialNote2);
   }
+
   var startTessiture = parseInt(tessitureSlider.value);
   var endTessiture = parseInt(tessitureSlider2.value);
 
-  var indice1 =
-    Math.floor(Math.random() * (endTessiture - startTessiture + 1)) +
-    startTessiture;
-  var indice2 =
-    Math.floor(Math.random() * (endTessiture - startTessiture + 1)) +
-    startTessiture;
+  var validIntervalFound = false;
 
-  var newNote1 = gammeChromatique[indice1];
-  var newNote2 = gammeChromatique[indice2];
-  initialNote1 = newNote1;
-  initialNote2 = newNote2;
-  console.log("notes " + newNote1, newNote2);
+  while (!validIntervalFound) {
+    var indice1 =
+      Math.floor(Math.random() * (endTessiture - startTessiture + 1)) +
+      startTessiture;
+    var indice2 =
+      Math.floor(Math.random() * (endTessiture - startTessiture + 1)) +
+      startTessiture;
 
-  var modes = ["ascendante", "descendante", "harmonique"];
-  var randomMode = modes[Math.floor(Math.random() * modes.length)];
-  console.log(randomMode);
+    var newNote1 = gammeChromatique[indice1];
+    var newNote2 = gammeChromatique[indice2];
+    initialNote1 = newNote1;
+    initialNote2 = newNote2;
+    console.log("notes " + newNote1, newNote2);
 
-  var indice1 = gammeChromatique.indexOf(newNote1);
-  var indice2 = gammeChromatique.indexOf(newNote2);
+    var modes = ["ascendante", "descendante", "harmonique"];
+    var randomMode = modes[Math.floor(Math.random() * modes.length)];
+    console.log(randomMode);
 
-  var distance = Math.abs(indice2 - indice1);
-  console.log("distance " + distance);
+    var indice1 = gammeChromatique.indexOf(newNote1);
+    var indice2 = gammeChromatique.indexOf(newNote2);
+
+    var distance = Math.abs(indice2 - indice1);
+    console.log("distance " + distance);
+
+    // Transformer intervalIndices en un tableau d'entiers
+    var intervalIndicesArray = intervalIndices.split(",").map(Number);
+    console.log(intervalIndicesArray);
+    // Vérifier si l'intervalle correspond à l'un des intervalles sélectionnés
+    if (intervalIndicesArray.includes(distance)) {
+      validIntervalFound = true;
+      break;
+    }
+  }
 
   if (distance != 0) {
     if (randomMode === "ascendante") {
@@ -68,5 +81,4 @@ function generateNewNotes() {
       currentMode = "harmonique";
     }
   }
-
 }
