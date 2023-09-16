@@ -8,7 +8,7 @@ function generateNewNotes() {
     }
   });
 
-  if (isScoreDisplayed) {
+  if (displayStaves) {
     var note1 = gammeChromatique.indexOf(initialNote1);
     var note2 = gammeChromatique.indexOf(initialNote2);
     var distance = Math.abs(note2 - note1);
@@ -38,10 +38,6 @@ function generateNewNotes() {
     initialNote1 = newNote1;
     initialNote2 = newNote2;
     console.log("notes " + newNote1, newNote2);
-
-    // var modes = ["ascendante", "descendante", "harmonique"];
-    // var randomMode = modes[Math.floor(Math.random() * modes.length)];
-    // console.log(randomMode);
 
     var indice1 = gammeChromatique.indexOf(newNote1);
     var indice2 = gammeChromatique.indexOf(newNote2);

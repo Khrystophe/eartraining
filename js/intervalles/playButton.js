@@ -1,32 +1,27 @@
+var playButton = document.getElementById("playButton");
+
 // Gestionnaire d'événements pour le bouton "Jouer un interval"
-document.getElementById("playButton").addEventListener("click", function () {
+playButton.addEventListener("click", function () {
 
-  if (answerGiven || !isScoreDisplayed || answerRevealed) {
-
+  if ( !displayStaves || answerRevealed) {
     this.classList.remove("play-ok");
     this.classList.add("play-stop");
-    
+
+    playButton.setAttribute("disabled", "disabled");
+
+    for (let i = 1; i <= 12; i++) {
+      const selectButton = document.getElementById(`select-interval-${i}`);
+      selectButton.setAttribute("disabled", "disabled");
+    }
+
     generateNewNotes();
- 
+
+    // On remet l'attribut answerRevealed à false pour ne pas povoir rejouer
     if (answerRevealed) {
-      // Suppression du score précedent
-      var scoreDiv = document.getElementById("scoreValue");
-
-      while (scoreDiv.firstChild) {
-        scoreDiv.removeChild(scoreDiv.firstChild);
-      }
-
-      // Création div score
-      var scoreDiv = document.createElement("div");
-      document.getElementById("scoreValue").appendChild(scoreDiv);
-      score = 0;
-      scoreDiv.textContent = score;
       answerRevealed = false;
     }
-    // On génère un nouvel intervalle donc l'utilisateur doit donner une réponse
-    answerGiven = false;
     // La portée à la possibilité de s'afficher car un interval a été généré
-    isScoreDisplayed = true;
+    displayStaves = true;
   } else {
     alert("Veuillez donner la bonne réponse ou la révéler");
   }

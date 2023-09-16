@@ -18,7 +18,7 @@ var interval = "";
 var octave = 0;
 
 // Affichage de la portée seulement si une note à été généré et que l'utilisateur a donné une réponse ou révélé la réponse
-var isScoreDisplayed = false;
+var displayStaves = false;
 
 // Variable pour suivre le mode de lecture actuel
 var currentMode = "";
@@ -32,6 +32,3 @@ var score = 0;
 
 // Pour reset score après avoir utilisé le bouton de réponse
 var answerRevealed = false;
-
-// Pour que l'utilisateur ne pas puisse générer un nouvel intervalle sans avoir donné une réponse
-var answerGiven = false;

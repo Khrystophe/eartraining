@@ -2,12 +2,13 @@
 var reponseButtons = document.querySelectorAll(".reponse");
 reponseButtons.forEach(function (button) {
   button.addEventListener("click", function () {
-    answerGiven = true;
+    
     var distance = parseInt(button.getAttribute("data-distance"));
     console.log(distance);
     var userResponse = getIntervalName(distance);
-    // Pour que l'utilisateur génére une nouvelle note à l'ouverture de l'exercice
-    if (isScoreDisplayed && !answerRevealed) {
+    
+    // Vérification de la réponse seuelemnent si un interval a été généré et que la reponse n'a pas été révélée
+    if (displayStaves && !answerRevealed) {
       checkAnswer(userResponse, button);
     } else {
       // Suppression du score précedent
@@ -26,3 +27,19 @@ reponseButtons.forEach(function (button) {
     }
   });
 });
+
+// Fonction pour mettre à jour l'état des boutons de réponse en fonction des intervalles sélectionnés
+function updateResponseButtons() {
+    if (!displayStaves || answerRevealed) {
+    reponseButtons.forEach(function (button) {
+      var distancesString = button.getAttribute("data-distance");
+      var distances = distancesString.split(", ").map(Number);
+
+      if (intervalIndices.includes(distances)) {
+        button.removeAttribute("disabled");
+      } else {
+        button.setAttribute("disabled", "disabled");
+      }
+    });
+  } 
+}

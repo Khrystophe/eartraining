@@ -20,17 +20,12 @@ function checkAnswer(userResponse, button) {
     // Générer de nouvelles notes après une réponse correcte
     generateNewNotes();
 
-    // Pour que l'utilisateur ne puisse pas générer un nouvel intervalle deux fois de suite
-    answerGiven = false;
-
     score++;
     scoreDiv.textContent = score;
-    isScoreDisplayed = true; // Mettre à jour l'état de l'affichage de la portée
   } else {
     score = 0;
     scoreDiv.textContent = score;
-    // Pour que l'utilisateur ne puisse pas générer un nouvel intervalle sans avoir donné la bonne réponse ou révélé la bonne réponse
-    answerGiven = false;
+    
     button.classList.add("reponse-incorrecte");
   }
 }
