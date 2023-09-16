@@ -1,3 +1,4 @@
+
 function generateNewNotes() {
   clearStaves();
 
@@ -38,9 +39,9 @@ function generateNewNotes() {
     initialNote2 = newNote2;
     console.log("notes " + newNote1, newNote2);
 
-    var modes = ["ascendante", "descendante", "harmonique"];
-    var randomMode = modes[Math.floor(Math.random() * modes.length)];
-    console.log(randomMode);
+    // var modes = ["ascendante", "descendante", "harmonique"];
+    // var randomMode = modes[Math.floor(Math.random() * modes.length)];
+    // console.log(randomMode);
 
     var indice1 = gammeChromatique.indexOf(newNote1);
     var indice2 = gammeChromatique.indexOf(newNote2);
@@ -58,27 +59,56 @@ function generateNewNotes() {
     }
   }
 
+  console.log(mode);
   if (distance != 0) {
-    if (randomMode === "ascendante") {
+    if (mode === "ascendante") {
       playAscending(newNote1, newNote2);
       currentMode = "ascendante";
-    } else if (randomMode === "descendante") {
+    } else if (mode === "descendante") {
       playDescending(newNote1, newNote2);
       currentMode = "descendante";
-    } else if (randomMode === "harmonique") {
+    } else if (mode === "harmonique") {
       playSimultaneous(newNote1, newNote2);
       currentMode = "harmonique";
+    } else {
+      // Mode aléatoire
+      var randomModes = ["ascendante", "descendante", "harmonique"];
+      var randomMode = randomModes[Math.floor(Math.random() * randomModes.length)];
+      if (randomMode === "ascendante") {
+        playAscending(newNote1, newNote2);
+        currentMode = "ascendante";
+      } else if (randomMode === "descendante") {
+        playDescending(newNote1, newNote2);
+        currentMode = "descendante";
+      } else if (randomMode === "harmonique") {
+        playSimultaneous(newNote1, newNote2);
+        currentMode = "harmonique";
+      }
     }
   } else {
-    if (randomMode === "ascendante") {
+    if (mode === "ascendante") {
       playAscending(newNote1, newNote2);
       currentMode = "repété";
-    } else if (randomMode === "descendante") {
+    } else if (mode === "descendante") {
       playDescending(newNote1, newNote2);
       currentMode = "repété";
-    } else if (randomMode === "harmonique") {
+    } else if (mode === "harmonique") {
       playSimultaneous(newNote1, newNote2);
       currentMode = "harmonique";
+    } else {
+      // Mode aléatoire
+      var randomModes = ["ascendante", "descendante", "harmonique"];
+      var randomMode = randomModes[Math.floor(Math.random() * randomModes.length)];
+      if (randomMode === "ascendante") {
+        playAscending(newNote1, newNote2);
+        currentMode = "repété";
+      } else if (randomMode === "descendante") {
+        playDescending(newNote1, newNote2);
+        currentMode = "repété";
+      } else if (randomMode === "harmonique") {
+        playSimultaneous(newNote1, newNote2);
+        currentMode = "harmonique";
+      }
     }
   }
 }

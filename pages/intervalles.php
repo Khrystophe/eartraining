@@ -96,18 +96,29 @@
 
     <div class="selected-intervals-container">
         <div class="selected-intervals-buttons-container">
-            <button class="btn interval" id="select-interval-1">1</button>
+            <button class="btn interval selected-interval" id="select-interval-1">1</button>
             <button class="btn interval" id="select-interval-2">2b</button>
             <button class="btn interval" id="select-interval-3">2</button>
             <button class="btn interval" id="select-interval-4">3b</button>
-            <button class="btn interval" id="select-interval-5">3</button>
+            <button class="btn interval selected-interval" id="select-interval-5">3</button>
             <button class="btn interval" id="select-interval-6">4</button>
             <button class="btn interval" id="select-interval-7">5b</button>
-            <button class="btn interval" id="select-interval-8">5</button>
+            <button class="btn interval selected-interval" id="select-interval-8">5</button>
             <button class="btn interval" id="select-interval-9">6b</button>
             <button class="btn interval" id="select-interval-10">6</button>
             <button class="btn interval" id="select-interval-11">7b</button>
             <button class="btn interval" id="select-interval-12">7</button>
+        </div>
+    </div>
+
+    <h2>Choisissez le mode :</h2>
+
+    <div class="modes-container">
+        <div class="modes-buttons-container">
+            <button class="btn mode selected-mode" id="ascending-mode-button">Ascendant</button>
+            <button class="btn mode" id="descending-mode-button">Descendant</button>
+            <button class="btn mode" id="harmonic-mode-button">Harmonique</button>
+            <button class="btn mode" id="random-mode-button">Aléatoire</button>
         </div>
     </div>
 
@@ -128,6 +139,7 @@
     <script src="../js/intervalles/repeatButton.js"></script>
     <script src="../js/intervalles/showReponseButton.js"></script>
     <script src="../js/intervalles/selectedIntervalsButtons.js"></script>
+    <script src="../js/intervalles/modeButtons.js"></script>
 
 </body>
 
