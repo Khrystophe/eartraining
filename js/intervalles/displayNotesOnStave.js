@@ -48,16 +48,16 @@ function displayNotesOnStave(note1, note2) {
   var textNote1 = document.createElement("div");
   document.getElementById("note1").appendChild(textNote1);
 
-  var notenumber1 = document.createElement("div");
-  document.getElementById("note1").appendChild(notenumber1);
-  notenumber1.textContent = "première note :";
+  // var notenumber1 = document.createElement("div");
+  // document.getElementById("note1").appendChild(notenumber1);
+  // notenumber1.textContent = "première note :";
 
   var textNote2 = document.createElement("div");
   document.getElementById("note2").appendChild(textNote2);
 
-  var notenumber2 = document.createElement("div");
-  document.getElementById("note2").appendChild(notenumber2);
-  notenumber2.textContent = "deuxième note :";
+  // var notenumber2 = document.createElement("div");
+  // document.getElementById("note2").appendChild(notenumber2);
+  // notenumber2.textContent = "deuxième note :";
 
   // Pour calculer l'odre d'affcihage des portées
   var indice1 = gammeChromatique.indexOf(note1);

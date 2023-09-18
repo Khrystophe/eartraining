@@ -16,8 +16,10 @@ var selectedIntervals = {
 // Fonction pour générer de nouvelles notes et les mettre à jour dans le HTML
 var intervalKey = "";
 var intervalIndices =
-  selectedIntervals["interval-1"] + "," +
-  selectedIntervals["interval-5"] + "," +
+  selectedIntervals["interval-1"] +
+  "," +
+  selectedIntervals["interval-5"] +
+  "," +
   selectedIntervals["interval-8"];
 
 // Ajouter des gestionnaires d'événements aux boutons de sélection
@@ -54,10 +56,5 @@ for (let i = 1; i <= 12; i++) {
     }
 
     console.log(intervalIndices);
-
-        // Mettre à jour l'état des boutons de réponse après chaque sélection
-        updateResponseButtons();
   });
 }
-// Mettre a jourà l'ouverture de l'exercice
-updateResponseButtons();

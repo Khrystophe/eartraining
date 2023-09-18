@@ -16,12 +16,64 @@ function checkAnswer(userResponse, button) {
   var scoreDiv = document.createElement("div");
   document.getElementById("scoreValue").appendChild(scoreDiv);
 
-  if (userResponse === interval) {
+  if (userResponse === interval && autoReading) {
+    clearStaves();
+
+    // Affichage des portées
+    if (displayStaves) {
+      var note1 = gammeChromatique.indexOf(initialNote1);
+      var note2 = gammeChromatique.indexOf(initialNote2);
+      var distance = Math.abs(note2 - note1);
+      
+      // Afficher à l'utilisateur
+      octave = Math.floor(distance / 12);
+      interval = getIntervalName(distance);
+      
+      displayNotesOnStave(initialNote1, initialNote2);
+    }
     // Générer de nouvelles notes après une réponse correcte
     generateNewNotes();
+    
+    score++;
+    scoreDiv.textContent = score;
+    
+  } else if (userResponse === interval && !autoReading) {
+    clearStaves();
+
+    // Désactiver les boutons de réponses pour que le score ne se remette pas a zero quand l'utilisateur clique au hasard avant de générer un nouvel intervalle
+    reponseButtons.forEach(function (button) {
+      button.setAttribute("disabled", "disabled");
+    })
+
+    showReponseButton.setAttribute("disabled", "disabled");
+
+    if(displayStaves) {
+      var note1 = gammeChromatique.indexOf(initialNote1);
+      var note2 = gammeChromatique.indexOf(initialNote2);
+      var distance = Math.abs(note2 - note1);
+
+      // Afficher à l'utilisateur
+      octave = Math.floor(distance / 12);
+      interval = getIntervalName(distance);
+
+      displayNotesOnStave(initialNote1, initialNote2);
+    }
+
+    var playButton = document.getElementById("playButton");
+
+    playButton.classList.remove("play-stop");
+    playButton.classList.add("play-ok");
+
+    playButton.removeAttribute("disabled");
+
+    for (let i = 1; i <= 12; i++) {
+      const selectButton = document.getElementById(`select-interval-${i}`);
+      selectButton.removeAttribute("disabled");
+    }
 
     score++;
     scoreDiv.textContent = score;
+  
   } else {
     score = 0;
     scoreDiv.textContent = score;

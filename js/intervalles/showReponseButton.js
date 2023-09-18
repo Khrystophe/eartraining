@@ -1,43 +1,50 @@
-document.getElementById("showReponseButton").addEventListener("click", function () {
-    clearStaves();
+var showReponseButton = document.getElementById("showReponseButton");
 
-    var playButton = document.getElementById("playButton");
+showReponseButton.setAttribute("disabled", "disabled");
 
-    playButton.classList.remove("play-stop");
-    playButton.classList.add("play-ok");
+showReponseButton.addEventListener("click", function () {
+  clearStaves();
 
-    playButton.removeAttribute("disabled");
+  reponseButtons.forEach(function (button) {
+    button.setAttribute("disabled", "disabled");
+  });
 
-    for (let i = 1; i <= 12; i++) {
-      const selectButton = document.getElementById(`select-interval-${i}`);
-      selectButton.removeAttribute("disabled");
-    }
+  showReponseButton.setAttribute("disabled", "disabled");
 
-    answerRevealed = true;
+  playButton.classList.remove("play-stop");
+  playButton.classList.add("play-ok");
 
-     // Suppression du score précedent
-     var scoreDiv = document.getElementById("scoreValue");
+  playButton.removeAttribute("disabled");
 
-     while (scoreDiv.firstChild) {
-       scoreDiv.removeChild(scoreDiv.firstChild);
-     }
+  for (let i = 1; i <= 12; i++) {
+    const selectButton = document.getElementById(`select-interval-${i}`);
+    selectButton.removeAttribute("disabled");
+  }
 
-     // Création div score
-     var scoreDiv = document.createElement("div");
-     document.getElementById("scoreValue").appendChild(scoreDiv);
-     score = 0;
-     scoreDiv.textContent = score;
-     
-  
-    if (displayStaves) {
-      var note1 = gammeChromatique.indexOf(initialNote1);
-      var note2 = gammeChromatique.indexOf(initialNote2);
-      var distance = Math.abs(note2 - note1);
-  
-      // Afficher à l'utilisateur
-      octave = Math.floor(distance / 12);
-      interval = getIntervalName(distance);
-  
-      displayNotesOnStave(initialNote1, initialNote2);
-    }
+  answerRevealed = true;
+
+  // Suppression du score précedent
+  var scoreDiv = document.getElementById("scoreValue");
+
+  while (scoreDiv.firstChild) {
+    scoreDiv.removeChild(scoreDiv.firstChild);
+  }
+
+  // Création div score
+  var scoreDiv = document.createElement("div");
+  document.getElementById("scoreValue").appendChild(scoreDiv);
+  score = 0;
+  scoreDiv.textContent = score;
+
+  if (displayStaves) {
+    var note1 = gammeChromatique.indexOf(initialNote1);
+    var note2 = gammeChromatique.indexOf(initialNote2);
+    var distance = Math.abs(note2 - note1);
+
+    // Afficher à l'utilisateur
+    octave = Math.floor(distance / 12);
+    interval = getIntervalName(distance);
+
+    displayNotesOnStave(initialNote1, initialNote2);
+  }
 });

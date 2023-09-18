@@ -112,7 +112,7 @@
     </div>
 
     <h2>Choisissez le mode :</h2>
-
+    
     <div class="modes-container">
         <div class="modes-buttons-container">
             <button class="btn mode selected-mode" id="ascending-mode-button">Ascendant</button>
@@ -121,6 +121,15 @@
             <button class="btn mode" id="random-mode-button">Aléatoire</button>
         </div>
     </div>
+    
+
+
+    <div class="auto-reading-container">
+        <div class="auto-reading-buttons-container">
+            <button class="btn auto-reading" id="auto-reading-button">Question suivante automatique</button>
+        </div>
+    </div>
+
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/abcjs/6.2.2/abcjs-basic-min.min.js" integrity="sha512-REXLcx385NL3ZWosam5LzLJoA0AkfeVdW94IQURSM/Gl6EyrS0hS3LtqR094d00lsicEVAprWA5SUTD5oljapg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
@@ -140,6 +149,7 @@
     <script src="../js/intervalles/showReponseButton.js"></script>
     <script src="../js/intervalles/selectedIntervalsButtons.js"></script>
     <script src="../js/intervalles/modeButtons.js"></script>
+    <script src="../js/intervalles/autoReadingButton.js"></script>
 
 </body>
 

@@ -1,24 +1,11 @@
 
 function generateNewNotes() {
-  clearStaves();
 
   reponseButtons.forEach(function (button) {
     if (button.classList.contains("reponse-incorrecte")) {
       button.classList.remove("reponse-incorrecte");
     }
   });
-
-  if (displayStaves) {
-    var note1 = gammeChromatique.indexOf(initialNote1);
-    var note2 = gammeChromatique.indexOf(initialNote2);
-    var distance = Math.abs(note2 - note1);
-
-    // Afficher à l'utilisateur
-    octave = Math.floor(distance / 12);
-    interval = getIntervalName(distance);
-
-    displayNotesOnStave(initialNote1, initialNote2);
-  }
 
   var startTessiture = parseInt(tessitureSlider.value);
   var endTessiture = parseInt(tessitureSlider2.value);

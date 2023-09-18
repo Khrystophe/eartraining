@@ -32,3 +32,5 @@ var score = 0;
 
 // Pour reset score après avoir utilisé le bouton de réponse
 var answerRevealed = false;
+
+var autoReading = false;
