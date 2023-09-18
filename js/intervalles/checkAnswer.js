@@ -24,30 +24,30 @@ function checkAnswer(userResponse, button) {
       var note1 = gammeChromatique.indexOf(initialNote1);
       var note2 = gammeChromatique.indexOf(initialNote2);
       var distance = Math.abs(note2 - note1);
-      
+
       // Afficher à l'utilisateur
       octave = Math.floor(distance / 12);
       interval = getIntervalName(distance);
-      
+
       displayNotesOnStave(initialNote1, initialNote2);
     }
     // Générer de nouvelles notes après une réponse correcte
     generateNewNotes();
-    
+
     score++;
-    scoreDiv.textContent = score;
-    
+    numberOfAnswers++;
+    scoreDiv.textContent = Math.round((score / numberOfAnswers) * 100) + "%";
   } else if (userResponse === interval && !autoReading) {
     clearStaves();
 
     // Désactiver les boutons de réponses pour que le score ne se remette pas a zero quand l'utilisateur clique au hasard avant de générer un nouvel intervalle
     reponseButtons.forEach(function (button) {
       button.setAttribute("disabled", "disabled");
-    })
+    });
 
     showReponseButton.setAttribute("disabled", "disabled");
 
-    if(displayStaves) {
+    if (displayStaves) {
       var note1 = gammeChromatique.indexOf(initialNote1);
       var note2 = gammeChromatique.indexOf(initialNote2);
       var distance = Math.abs(note2 - note1);
@@ -72,12 +72,14 @@ function checkAnswer(userResponse, button) {
     }
 
     score++;
-    scoreDiv.textContent = score;
-  
+    numberOfAnswers++;
+    scoreDiv.textContent = Math.round((score / numberOfAnswers) * 100) + "%";
   } else {
-    score = 0;
-    scoreDiv.textContent = score;
     
+    numberOfAnswers++;
+    scoreDiv.textContent = Math.round((score / numberOfAnswers) * 100) + "%";
+
     button.classList.add("reponse-incorrecte");
+    button.setAttribute("disabled", "disabled");
   }
 }

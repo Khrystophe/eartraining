@@ -15,7 +15,7 @@
     <h1>Reconnaissance d'intervalles</h1>
 
     <div class="score-container">
-        <div>Score :</div>
+        <div>Taux de réussite :</div>
         <div id="scoreValue"></div>
     </div>
 
@@ -33,30 +33,15 @@
         </div>
     </div>
 
-    <div class="tessiture-slider-container">
-        <div class="tessiture-container">
-            <h2>Choisissez la tessiture :</h2>
-            <div>
-                <label for="tessiture">De :</label>
-                <span id="tessitureValue"></span>
-            </div>
-            <input type="range" id="tessiture" class="form-range" name="tessiture" min="0" max="87" step="1">
-            <div>
-                <label for="tessiture2">à :</label>
-                <span id="tessitureValue2"></span>
-            </div>
-            <input type="range" id="tessiture2" class="form-range" name="tessiture2" min="0" max="87" step="1">
-        </div>
-    </div>
-
-
+    
+    
     <div class="play-show-container">
         <button id="playButton" class="btn play-ok">Jouer un intervalle</button>
         <button id="showReponseButton" class="btn ">Voir la réponse</button>
     </div>
-
+    
     <h2>Choisissez la réponse :</h2>
-
+    
     <div class="response-container">
         <div class="response-buttons-container">
             <?php
@@ -75,25 +60,25 @@
                 '7b' => [10, 22, 34, 46, 58, 70, 82],
                 '7' => [11, 23, 35, 47, 59, 71, 83],
             ];
-
+            
             // Générer les boutons de réponse
             foreach ($reponses as $reponse => $distances) {
                 // Convertir le tableau $distances en une chaîne de caractères avec des virgules
                 $distancesString = implode(', ', $distances);
-
+                
                 echo '<button class="btn reponse" data-distance="' . $distancesString . '">' . $reponse . '</button>';
             }
 
             ?>
         </div>
     </div>
-
+    
     <div class="repeat-container">
         <button id="repeatButton" class="btn ">Répéter l'intervalle</button>
     </div>
-
+    
     <h2>Choisissez les intervalles :</h2>
-
+    
     <div class="selected-intervals-container">
         <div class="selected-intervals-buttons-container">
             <button class="btn interval selected-interval" id="select-interval-1">1</button>
@@ -122,17 +107,32 @@
         </div>
     </div>
     
-
+    
 
     <div class="auto-reading-container">
         <div class="auto-reading-buttons-container">
             <button class="btn auto-reading" id="auto-reading-button">Question suivante automatique</button>
         </div>
     </div>
-
-
+    
+    <div class="tessiture-slider-container">
+        <div class="tessiture-container">
+            <h2>Choisissez la tessiture :</h2>
+            <div>
+                <label for="tessiture">De :</label>
+                <span id="tessitureValue"></span>
+            </div>
+            <input type="range" id="tessiture" class="form-range" name="tessiture" min="0" max="87" step="1">
+            <div>
+                <label for="tessiture2">à :</label>
+                <span id="tessitureValue2"></span>
+            </div>
+            <input type="range" id="tessiture2" class="form-range" name="tessiture2" min="0" max="87" step="1">
+        </div>
+    </div>
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/abcjs/6.2.2/abcjs-basic-min.min.js" integrity="sha512-REXLcx385NL3ZWosam5LzLJoA0AkfeVdW94IQURSM/Gl6EyrS0hS3LtqR094d00lsicEVAprWA5SUTD5oljapg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
+    
     <script src="../js/intervalles/variables.js"></script>
     <script src="../js/intervalles/displayNotesOnStave.js"></script>
     <script src="../js/intervalles/processNote.js"></script>

@@ -25,12 +25,17 @@ var currentMode = "";
 
 // Pour afficher le score
 var score = 0;
-   // Création div score
-   var scoreDiv = document.createElement("div");
-   document.getElementById("scoreValue").appendChild(scoreDiv);
-   scoreDiv.textContent = score;
+ // Création div score
+var scoreDiv = document.createElement("div");
+document.getElementById("scoreValue").appendChild(scoreDiv);
+scoreDiv.textContent = score + "%";
 
 // Pour reset score après avoir utilisé le bouton de réponse
 var answerRevealed = false;
 
 var autoReading = false;
+
+var numberOfAnswers = 0;
+
+console.log(score);
+console.log(numberOfAnswers);

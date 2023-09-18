@@ -33,8 +33,9 @@ showReponseButton.addEventListener("click", function () {
   // Création div score
   var scoreDiv = document.createElement("div");
   document.getElementById("scoreValue").appendChild(scoreDiv);
-  score = 0;
-  scoreDiv.textContent = score;
+  
+  numberOfAnswers++;
+  scoreDiv.textContent = Math.round((score / numberOfAnswers) * 100) + "%";
 
   if (displayStaves) {
     var note1 = gammeChromatique.indexOf(initialNote1);

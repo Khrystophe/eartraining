@@ -25,8 +25,9 @@ reponseButtons.forEach(function (button) {
       // Création div score
       var scoreDiv = document.createElement("div");
       document.getElementById("scoreValue").appendChild(scoreDiv);
-      score = 0;
-      scoreDiv.textContent = score;
+     
+      numberOfAnswers++;
+      scoreDiv.textContent = Math.round((score / numberOfAnswers) * 100) + "%";
       alert("Veuillez jouer un intervalle");
     }
   });
