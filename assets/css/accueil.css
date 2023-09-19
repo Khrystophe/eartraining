@@ -5,9 +5,16 @@
 body {
   background: #111 !important;
   height: 100vh;
+}
+
+.bg-light{
+  background: #808080 !important;
+}
+
+.main-container{
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  height: 90vh;
 }
 
 .card {
