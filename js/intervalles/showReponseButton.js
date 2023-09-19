@@ -23,19 +23,9 @@ showReponseButton.addEventListener("click", function () {
 
   answerRevealed = true;
 
-  // Suppression du score précedent
-  var scoreDiv = document.getElementById("scoreValue");
-
-  while (scoreDiv.firstChild) {
-    scoreDiv.removeChild(scoreDiv.firstChild);
-  }
-
-  // Création div score
-  var scoreDiv = document.createElement("div");
-  document.getElementById("scoreValue").appendChild(scoreDiv);
-  
   numberOfAnswers++;
-  scoreDiv.textContent = Math.round((score / numberOfAnswers) * 100) + "%";
+
+  updateProgressBar(score, numberOfAnswers);
 
   if (displayStaves) {
     var note1 = gammeChromatique.indexOf(initialNote1);

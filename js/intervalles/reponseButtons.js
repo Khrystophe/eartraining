@@ -15,20 +15,9 @@ reponseButtons.forEach(function (button) {
     if (displayStaves && !answerRevealed) {
       checkAnswer(userResponse, button);
     } else {
-      // Suppression du score précedent
-      var scoreDiv = document.getElementById("scoreValue");
-
-      while (scoreDiv.firstChild) {
-        scoreDiv.removeChild(scoreDiv.firstChild);
-      }
-
-      // Création div score
-      var scoreDiv = document.createElement("div");
-      document.getElementById("scoreValue").appendChild(scoreDiv);
-     
       numberOfAnswers++;
-      scoreDiv.textContent = Math.round((score / numberOfAnswers) * 100) + "%";
-      alert("Veuillez jouer un intervalle");
+
+      updateProgressBar(score, numberOfAnswers);
     }
   });
 });

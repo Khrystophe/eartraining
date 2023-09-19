@@ -5,17 +5,6 @@ function checkAnswer(userResponse, button) {
   var distance = Math.abs(note2 - note1);
   interval = getIntervalName(distance);
 
-  // Suppression du score précedent
-  var scoreDiv = document.getElementById("scoreValue");
-
-  while (scoreDiv.firstChild) {
-    scoreDiv.removeChild(scoreDiv.firstChild);
-  }
-
-  // Création div score
-  var scoreDiv = document.createElement("div");
-  document.getElementById("scoreValue").appendChild(scoreDiv);
-
   if (userResponse === interval && autoReading) {
     clearStaves();
 
@@ -31,12 +20,15 @@ function checkAnswer(userResponse, button) {
 
       displayNotesOnStave(initialNote1, initialNote2);
     }
+    // Réactiver les boutons de réponses par rapport aux intervalles choisis
+    updateResponseButtons();
     // Générer de nouvelles notes après une réponse correcte
     generateNewNotes();
 
     score++;
     numberOfAnswers++;
-    scoreDiv.textContent = Math.round((score / numberOfAnswers) * 100) + "%";
+
+    updateProgressBar(score, numberOfAnswers);
   } else if (userResponse === interval && !autoReading) {
     clearStaves();
 
@@ -73,11 +65,12 @@ function checkAnswer(userResponse, button) {
 
     score++;
     numberOfAnswers++;
-    scoreDiv.textContent = Math.round((score / numberOfAnswers) * 100) + "%";
+
+    updateProgressBar(score, numberOfAnswers);
   } else {
-    
     numberOfAnswers++;
-    scoreDiv.textContent = Math.round((score / numberOfAnswers) * 100) + "%";
+
+    updateProgressBar(score, numberOfAnswers);
 
     button.classList.add("reponse-incorrecte");
     button.setAttribute("disabled", "disabled");

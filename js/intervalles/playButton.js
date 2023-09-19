@@ -17,6 +17,7 @@ playButton.addEventListener("click", function () {
     showReponseButton.removeAttribute("disabled");
     repeatButton.removeAttribute("disabled");
 
+    // Réactiver les boutons de réponses par rapport aux intervalles choisis
     updateResponseButtons();
     generateNewNotes();
 
