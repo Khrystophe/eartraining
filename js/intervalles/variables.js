@@ -32,6 +32,3 @@ var answerRevealed = false;
 var autoReading = false;
 
 var numberOfAnswers = 0;
-
-console.log(score);
-console.log(numberOfAnswers);

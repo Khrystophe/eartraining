@@ -14,35 +14,31 @@ function processNote(note) {
   if (matches) {
     // Note de base sans bémol ou dièse
     var baseNote = matches[1];
+    var name="";
 
     // Octave
     var octave = parseInt(matches[2]);
 
     // Vérifiez si la note est enharmonique et remplacez-la si nécessaire en utilisant l'objet enharmonicMap
     if (enharmonicMap[baseNote]) {
-      baseNote += " " + enharmonicMap[baseNote];
-      var parts = baseNote.split(" ");
-      if (parts[0].includes("b")) {
-        {
-          parts[0] = "_" + parts[0].replace("b", "");
-        }
-        if (parts[1].includes("#")) {
-          {
-            parts[1] = "^" + parts[1].replace("#", "");
-          }
-        }
-        baseNote = parts.join(" ");
-        console.log(baseNote);
-      }
+     
+      name = enharmonicMap[baseNote] + octave + "/" + baseNote + octave;
+      baseNote = enharmonicMap[baseNote] + octave + " " + baseNote + octave;
+      console.log(name);
+
+      // Si la note ne contient pas d'altération
+    } else {
+      name = baseNote + octave;
+      baseNote += octave;
     }
 
-    // Transposez l'octave si nécessaire
-    var octaveAdjustment = octave - 4;
-    // Calculez le visualTranspose en fonction de l'octave
     return {
       baseNote: baseNote,
-      visualTranspose: octaveAdjustment * 12, // Chaque octave = 12 demi-tons
+      name: name
     };
   }
-  return { baseNote: note, visualTranspose: 0 }; // Si la note ne correspond pas au format attendu, retournez-la telle quelle
+  return {
+    baseNote: note,
+    name: note
+  }; 
 }

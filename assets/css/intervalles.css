@@ -81,7 +81,7 @@ h2 {
     flex-direction: row;
     justify-content: center;
     .width {
-      width: 9.5rem;
+      display: flex;
       .note {
         display: flex;
         justify-content: center;
@@ -91,6 +91,20 @@ h2 {
     }
   }
 }
+
+.music-score{
+  width: 500px;
+  height: 300px;
+}
+
+.notes{
+  display: flex;
+  transform: translate(40px, -170px);
+  #note1{
+    margin-right: 1rem;
+  }
+}
+
 .tessiture-slider-container {
   display: flex;
   justify-content: center;
@@ -256,3 +270,8 @@ h2 {
 .close-modal:hover svg path {
   fill: black;
 }
+svg:not(:root) {
+  overflow-clip-margin: content-box;
+  overflow: visible !important;
+}
+

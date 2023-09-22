@@ -1,7 +1,11 @@
 // Affichage des notes sur la portée et de leur nom
+
 function displayNotesOnStave(note1, note2) {
-  console.log(octave);
-  // Création des divs pour les portées et le nom des notes
+  var vf = new Vex.Flow.Factory({ renderer: { elementId: "music-score" } });
+  var score = vf.EasyScore();
+  var system = vf.System();
+
+  // // Création des divs pour les portées et le nom des notes
   var responsetext = document.createElement("h5");
   responsetext.classList.add("responseText-h5");
   document.getElementById("response").appendChild(responsetext);
@@ -39,11 +43,6 @@ function displayNotesOnStave(note1, note2) {
         "Persévérez ! La réponse était :\n" + interval + " " + currentMode;
     }
   }
-  var abcDiv1 = document.createElement("div");
-  document.getElementById("music-score1").appendChild(abcDiv1);
-
-  var abcDiv2 = document.createElement("div");
-  document.getElementById("music-score2").appendChild(abcDiv2);
 
   var textNote1 = document.createElement("div");
   document.getElementById("note1").appendChild(textNote1);
@@ -61,7 +60,7 @@ function displayNotesOnStave(note1, note2) {
   var keyIndice1 = "";
   var keyIndice2 = "";
 
-  // Dictionnaires pour le traitement des notes à affciher sur la portée
+  // // Dictionnaires pour le traitement des notes à affciher sur la portée
   var processedNote1 = {};
   var processedNote2 = {};
 
@@ -70,146 +69,812 @@ function displayNotesOnStave(note1, note2) {
     if (indice1 < indice2) {
       processedNote1 = processNote(note1);
       keyIndice1 = indice1;
-      textNote1.textContent = note1;
+      textNote1.textContent = processedNote1.name;
       processedNote2 = processNote(note2);
       keyIndice2 = indice2;
-      textNote2.textContent = note2;
+      textNote2.textContent = processedNote2.name;
     } else {
       processedNote1 = processNote(note2);
       keyIndice1 = indice2;
-      textNote1.textContent = note2;
+      textNote1.textContent = processedNote1.name;
       processedNote2 = processNote(note1);
       keyIndice2 = indice1;
-      textNote2.textContent = note1;
+      textNote2.textContent = processedNote2.name;
     }
   } else if (currentMode === "descendante") {
     if (indice1 > indice2) {
       processedNote1 = processNote(note1);
       keyIndice1 = indice1;
-      textNote1.textContent = note1;
+      textNote1.textContent = processedNote1.name;
       processedNote2 = processNote(note2);
       keyIndice2 = indice2;
-      textNote2.textContent = note2;
+      textNote2.textContent = processedNote2.name;
     } else {
       processedNote1 = processNote(note2);
       keyIndice1 = indice2;
-      textNote1.textContent = note2;
+      textNote1.textContent = processedNote1.name;
       processedNote2 = processNote(note1);
       keyIndice2 = indice1;
-      textNote2.textContent = note1;
+      textNote2.textContent = processedNote2.name;
     }
   } else if (currentMode === "harmonique" || currentMode === "repété") {
     processedNote1 = processNote(note1);
     keyIndice1 = indice1;
-    textNote1.textContent = note1;
+    textNote1.textContent = processedNote1.name;
     processedNote2 = processNote(note2);
     keyIndice2 = indice2;
-    textNote2.textContent = note2;
+    textNote2.textContent = processedNote2.name;
   }
 
-  // Créez la notation ABC avec les bons visualTranspose pour chaque voix
-  if (keyIndice1 >= 39) {
-    if (processedNote1.baseNote.includes(" ")) {
-      var parts = processedNote1.baseNote.split(" ");
-      var abcNotation1 = `X:1
-      L:1/4
-      K:C 
-      %%score (T1)
-      V:T1 clef=treble
-      [V:T1]|[${parts[0]}${parts[1]}|`;
+  if (keyIndice1 >= 39 && keyIndice2 >= 39) {
+    if (
+      processedNote1.baseNote.includes(" ") &&
+      processedNote2.baseNote.includes(" ")
+    ) {
+      var parts1 = processedNote1.baseNote.split(" ");
+      var parts2 = processedNote2.baseNote.split(" ");
 
-      // Affichez la notation ABC à l'aide d'ABCjs
-      ABCJS.renderAbc(abcDiv1, abcNotation1, {
-        visualTranspose: processedNote1.visualTranspose,
-      });
+      console.log(parts1);
+      console.log(parts2);
+
+      if (currentMode != "harmonique") {
+        system
+          .addStave({
+            voices: [
+              score.voice(
+                score.notes(parts1[0] + "/2, " + parts2[0], { stem: "up" })
+              ),
+              score.voice(
+                score.notes(parts1[1] + "/2, " + parts2[1], { stem: "down" })
+              ),
+            ],
+          })
+          .addClef("treble");
+
+        system
+          .addStave({
+            voices: [score.voice(score.notes("D3/1/r, ", { clef: "bass" }))],
+          })
+          .addClef("bass");
+      } else {
+        system
+          .addStave({
+            voices: [
+              score.voice(score.notes(parts1[0] + "/1, ")),
+              score.voice(score.notes(parts1[1] + "/1, ")),
+              score.voice(score.notes(parts2[0] + "/1, ")),
+              score.voice(score.notes(parts2[1] + "/1, ")),
+            ],
+          })
+          .addClef("treble");
+
+        system
+          .addStave({
+            voices: [score.voice(score.notes("D3/1/r, ", { clef: "bass" }))],
+          })
+          .addClef("bass");
+      }
+    } else if (processedNote1.baseNote.includes(" ")) {
+      var parts1 = processedNote1.baseNote.split(" ");
+
+      if (currentMode != "harmonique") {
+        system
+          .addStave({
+            voices: [
+              score.voice(
+                score.notes(parts1[0] + "/2, " + processedNote2.baseNote, {
+                  stem: "up",
+                })
+              ),
+              score.voice(
+                score.notes(parts1[1] + "/2, " + processedNote2.baseNote, {
+                  stem: "down",
+                })
+              ),
+            ],
+          })
+          .addClef("treble");
+
+        system
+          .addStave({
+            voices: [score.voice(score.notes("D3/1/r, ", { clef: "bass" }))],
+          })
+          .addClef("bass");
+      } else {
+        system
+          .addStave({
+            voices: [
+              score.voice(score.notes(parts1[0] + "/1, ")),
+              score.voice(score.notes(parts1[1] + "/1, ")),
+              score.voice(score.notes(processedNote2.baseNote + "/1, ")),
+            ],
+          })
+          .addClef("treble");
+
+        system
+          .addStave({
+            voices: [score.voice(score.notes("D3/1/r, ", { clef: "bass" }))],
+          })
+          .addClef("bass");
+      }
+    } else if (processedNote2.baseNote.includes(" ")) {
+      var parts2 = processedNote2.baseNote.split(" ");
+
+      if (currentMode != "harmonique") {
+        system
+          .addStave({
+            voices: [
+              score.voice(
+                score.notes(processedNote1.baseNote + "/2, " + parts2[0], {
+                  stem: "up",
+                })
+              ),
+              score.voice(
+                score.notes(processedNote1.baseNote + "/2, " + parts2[1], {
+                  stem: "down",
+                })
+              ),
+            ],
+          })
+          .addClef("treble");
+
+        system
+          .addStave({
+            voices: [score.voice(score.notes("D3/1/r, ", { clef: "bass" }))],
+          })
+          .addClef("bass");
+      } else {
+        system
+          .addStave({
+            voices: [
+              score.voice(score.notes(processedNote1.baseNote + "/1, ")),
+              score.voice(score.notes(parts2[0] + "/1, ")),
+              score.voice(score.notes(parts2[1] + "/1, ")),
+            ],
+          })
+          .addClef("treble");
+
+        system
+          .addStave({
+            voices: [score.voice(score.notes("D3/1/r, ", { clef: "bass" }))],
+          })
+          .addClef("bass");
+      }
     } else {
-      var abcNotation1 = `X:1
-      L:1/4
-      K:C 
-      %%score (T1)
-      V:T1 clef=treble
-      [V:T1]|${processedNote1.baseNote}|`;
+      if (currentMode != "harmonique") {
+        system
+          .addStave({
+            voices: [
+              score.voice(
+                score.notes(
+                  processedNote1.baseNote + "/2, " + processedNote2.baseNote
+                )
+              ),
+            ],
+          })
+          .addClef("treble");
 
-      ABCJS.renderAbc(abcDiv1, abcNotation1, {
-        visualTranspose: processedNote1.visualTranspose,
-      });
+        system
+          .addStave({
+            voices: [score.voice(score.notes("D3/1/r, ", { clef: "bass" }))],
+          })
+          .addClef("bass");
+      } else {
+        system
+          .addStave({
+            voices: [
+              score.voice(score.notes(processedNote1.baseNote + "/1, ")),
+              score.voice(score.notes(processedNote2.baseNote + "/1, ")),
+            ],
+          })
+          .addClef("treble");
+
+        system
+          .addStave({
+            voices: [score.voice(score.notes("D3/1/r, ", { clef: "bass" }))],
+          })
+          .addClef("bass");
+      }
+    }
+  } else if (keyIndice1 >= 39 && keyIndice2 < 39) {
+    console.log(keyIndice1);
+    console.log(keyIndice2);
+    if (
+      processedNote1.baseNote.includes(" ") &&
+      processedNote2.baseNote.includes(" ")
+    ) {
+      var parts1 = processedNote1.baseNote.split(" ");
+      var parts2 = processedNote2.baseNote.split(" ");
+
+      if (currentMode != "harmonique") {
+        system
+          .addStave({
+            voices: [
+              score.voice(
+                score.notes(parts1[0] + "/2, " + "B4/2/r, ", { stem: "up" })
+              ),
+              score.voice(
+                score.notes(parts1[1] + "/2, " + "B4/2/r, ", { stem: "down" })
+              ),
+            ],
+          })
+          .addClef("treble");
+
+        system
+          .addStave({
+            voices: [
+              score.voice(
+                score.notes("D3/2/r, " + parts2[0] + "/2, ", {
+                  clef: "bass",
+                  stem: "up",
+                })
+              ),
+              score.voice(
+                score.notes("D3/2/r, " + parts2[1] + "/2, ", {
+                  clef: "bass",
+                  stem: "down",
+                })
+              ),
+            ],
+          })
+          .addClef("bass");
+      } else {
+        system
+          .addStave({
+            voices: [
+              score.voice(score.notes(parts1[0] + "/1, ")),
+              score.voice(score.notes(parts1[1] + "/1, ")),
+            ],
+          })
+          .addClef("treble");
+
+        system
+          .addStave({
+            voices: [
+              score.voice(score.notes(parts2[0] + "/1, ", { clef: "bass" })),
+              score.voice(score.notes(parts2[1] + "/1, ", { clef: "bass" })),
+            ],
+          })
+          .addClef("bass");
+      }
+    } else if (processedNote1.baseNote.includes(" ")) {
+      var parts1 = processedNote1.baseNote.split(" ");
+
+      if (currentMode != "harmonique") {
+        system
+          .addStave({
+            voices: [
+              score.voice(
+                score.notes(parts1[0] + "/2, " + "B4/2/r, ", { stem: "up" })
+              ),
+              score.voice(
+                score.notes(parts1[1] + "/2, " + "B4/2/r, ", { stem: "down" })
+              ),
+            ],
+          })
+          .addClef("treble");
+
+        system
+          .addStave({
+            voices: [
+              score.voice(
+                score.notes("D3/2/r, " + processedNote2.baseNote + "/2, ", {
+                  clef: "bass",
+                })
+              ),
+            ],
+          })
+          .addClef("bass");
+      } else {
+        system
+          .addStave({
+            voices: [
+              score.voice(score.notes(parts1[0] + "/1, ")),
+              score.voice(score.notes(parts1[1] + "/1, ")),
+            ],
+          })
+          .addClef("treble");
+
+        system
+          .addStave({
+            voices: [
+              score.voice(
+                score.notes(processedNote2.baseNote + "/1, ", {
+                  clef: "bass",
+                })
+              ),
+            ],
+          })
+          .addClef("bass");
+      }
+    } else if (processedNote2.baseNote.includes(" ")) {
+      var parts2 = processedNote2.baseNote.split(" ");
+
+      if (currentMode != "harmonique") {
+        system
+          .addStave({
+            voices: [
+              score.voice(
+                score.notes(processedNote1.baseNote + "/2, " + "B4/2/r, ")
+              ),
+            ],
+          })
+          .addClef("treble");
+
+        system.addStave({
+          voices: [
+            score.voice(
+              score.notes("D3/2/r, " + parts2[0] + "/2, ", {
+                clef: "bass",
+                stem: "up",
+              })
+            ),
+            score.voice(
+              score.notes("D3/2/r, " + parts2[1] + "/2, ", {
+                clef: "bass",
+                stem: "down",
+              })
+            ),
+          ],
+        });
+      } else {
+        system
+          .addStave({
+            voices: [
+              score.voice(score.notes(processedNote1.baseNote + "/1, ")),
+            ],
+          })
+          .addClef("treble");
+
+        system
+          .addStave({
+            voices: [
+              score.voice(
+                score.notes(parts2[0] + "/1, ", {
+                  clef: "bass",
+                })
+              ),
+              score.voice(
+                score.notes(parts2[1] + "/1, ", {
+                  clef: "bass",
+                })
+              ),
+            ],
+          })
+          .addClef("bass");
+      }
+    } else {
+      system
+        .addStave({
+          voices: [
+            score.voice(
+              score.notes(processedNote1.baseNote + "/2, " + "B4/2/r, ")
+            ),
+          ],
+        })
+        .addClef("treble");
+
+      system
+        .addStave({
+          voices: [
+            score.voice(
+              score.notes("D3/2/r, " + processedNote2.baseNote + "/2, ", {
+                clef: "bass",
+              })
+            ),
+          ],
+        })
+        .addClef("bass");
+    }
+  } else if (keyIndice1 < 39 && keyIndice2 >= 39) {
+    console.log(keyIndice1);
+    console.log(keyIndice2);
+    if (
+      processedNote1.baseNote.includes(" ") &&
+      processedNote2.baseNote.includes(" ")
+    ) {
+      var parts1 = processedNote1.baseNote.split(" ");
+      var parts2 = processedNote2.baseNote.split(" ");
+
+      if (currentMode != "harmonique") {
+        system
+          .addStave({
+            voices: [
+              score.voice(
+                score.notes("B4/2/r, " + parts2[0] + "/2, ", { stem: "up" })
+              ),
+              score.voice(
+                score.notes("B4/2/r, " + parts2[1] + "/2, ", { stem: "down" })
+              ),
+            ],
+          })
+          .addClef("treble");
+
+        system
+          .addStave({
+            voices: [
+              score.voice(
+                score.notes(parts1[0] + "/2, " + "D3/2/r, ", {
+                  clef: "bass",
+                  stem: "up",
+                })
+              ),
+              score.voice(
+                score.notes(parts1[1] + "/2, " + "D3/2/r, ", {
+                  clef: "bass",
+                  stem: "down",
+                })
+              ),
+            ],
+          })
+          .addClef("bass");
+      } else {
+        system
+          .addStave({
+            voices: [
+              score.voice(score.notes(parts2[0] + "/1, ")),
+              score.voice(score.notes(parts2[1] + "/1, ")),
+            ],
+          })
+          .addClef("treble");
+
+        system
+          .addStave({
+            voices: [
+              score.voice(
+                score.notes(parts1[0] + "/1, ", { clef: "bass", stem: "up" })
+              ),
+              score.voice(
+                score.notes(parts1[1] + "/1, ", { clef: "bass", stem: "down" })
+              ),
+            ],
+          })
+          .addClef("bass");
+      }
+    } else if (processedNote1.baseNote.includes(" ")) {
+      var parts1 = processedNote1.baseNote.split(" ");
+
+      if (currentMode != "harmonique") {
+        system
+          .addStave({
+            voices: [
+              score.voice(
+                score.notes("B4/2/r, " + processedNote2.baseNote + "/2, ")
+              ),
+            ],
+          })
+          .addClef("treble");
+
+        system
+          .addStave({
+            voices: [
+              score.voice(
+                score.notes(parts1[0] + "/2, " + "D3/2/r, ", {
+                  clef: "bass",
+                  stem: "up",
+                })
+              ),
+              score.voice(
+                score.notes(parts1[1] + "/2, " + "D3/2/r, ", {
+                  clef: "bass",
+                  stem: "down",
+                })
+              ),
+            ],
+          })
+          .addClef("bass");
+      } else {
+        system
+          .addStave({
+            voices: [
+              score.voice(score.notes(processedNote2.baseNote + "/1, ")),
+            ],
+          })
+          .addClef("treble");
+
+        system
+          .addStave({
+            voices: [
+              score.voice(
+                score.notes(parts1[0] + "/1, ", { clef: "bass", stem: "up" })
+              ),
+              score.voice(
+                score.notes(parts1[1] + "/1, ", { clef: "bass", stem: "down" })
+              ),
+            ],
+          })
+          .addClef("bass");
+      }
+    } else if (processedNote2.baseNote.includes(" ")) {
+      var parts2 = processedNote2.baseNote.split(" ");
+
+      if (currentMode != "harmonique") {
+        system
+          .addStave({
+            voices: [
+              score.voice(
+                score.notes("B4/2/r, " + parts2[0] + "/2, ", { stem: "up" })
+              ),
+              score.voice(
+                score.notes("B4/2/r, " + parts2[1] + "/2, ", { stem: "down" })
+              ),
+            ],
+          })
+          .addClef("treble");
+
+        system.addStave({
+          voices: [
+            score.voice(
+              score.notes(processedNote1.baseNote + "/2, " + "D3/2/r, ", {
+                clef: "bass",
+              })
+            ),
+          ],
+        })
+        .addClef("bass");
+      } else {
+        system
+          .addStave({
+            voices: [
+              score.voice(score.notes(parts2[0] + "/1, ")),
+              score.voice(score.notes(parts2[1] + "/1, ")),
+            ],
+          })
+          .addClef("treble");
+
+        system
+          .addStave({
+            voices: [
+              score.voice(
+                score.notes(processedNote1.baseNote + "/1, ", {
+                  clef: "bass",
+                })
+              ),
+            ],
+          })
+          .addClef("bass");
+      }
+    } else {
+      if (currentMode != "harmonique") {
+        system
+          .addStave({
+            voices: [
+              score.voice(
+                score.notes("B4/2/r, " + processedNote2.baseNote + "/2, ")
+              ),
+            ],
+          })
+          .addClef("treble");
+
+        system
+          .addStave({
+            voices: [
+              score.voice(
+                score.notes(processedNote1.baseNote + "/2, " + "D3/2/r, ", {
+                  clef: "bass",
+                })
+              ),
+            ],
+          })
+          .addClef("bass");
+      } else {
+        system
+          .addStave({
+            voices: [
+              score.voice(score.notes(processedNote2.baseNote + "/1, ")),
+            ],
+          })
+          .addClef("treble");
+
+        system
+          .addStave({
+            voices: [
+              score.voice(
+                score.notes(processedNote1.baseNote + "/1, ", {
+                  clef: "bass",
+                })
+              ),
+            ],
+          })
+          .addClef("bass");
+      }
     }
   } else {
-    if (processedNote1.baseNote.includes(" ")) {
-      var parts = processedNote1.baseNote.split(" ");
-      var abcNotation1 = `X:1
-      L:1/4
-      K:C 
-      %%score (T1)
-      V:T1 clef=bass
-      [V:T1]|[${parts[0]}${parts[1]}|`;
+    if (
+      processedNote1.baseNote.includes(" ") &&
+      processedNote2.baseNote.includes(" ")
+    ) {
+      var parts1 = processedNote1.baseNote.split(" ");
+      var parts2 = processedNote2.baseNote.split(" ");
 
-      ABCJS.renderAbc(abcDiv1, abcNotation1, {
-        visualTranspose: processedNote1.visualTranspose,
-      });
+      if (currentMode != "harmonique") {
+        system
+          .addStave({
+            voices: [score.voice(score.notes("B4/1/r, "))],
+          })
+          .addClef("treble");
+
+        system
+          .addStave({
+            voices: [
+              score.voice(
+                score.notes(parts1[0] + "/2, " + parts2[0], {
+                  clef: "bass",
+                  stem: "up",
+                })
+              ),
+              score.voice(
+                score.notes(parts1[1] + "/2, " + parts2[1], {
+                  clef: "bass",
+                  stem: "down",
+                })
+              ),
+            ],
+          })
+          .addClef("bass");
+      } else {
+        system
+          .addStave({
+            voices: [score.voice(score.notes("B4/1/r, "))],
+          })
+          .addClef("treble");
+
+        system
+          .addStave({
+            voices: [
+              score.voice(score.notes(parts1[0] + "/1, ", { clef: "bass" })),
+              score.voice(score.notes(parts1[1] + "/1, ", { clef: "bass" })),
+              score.voice(score.notes(parts2[0] + "/1, ", { clef: "bass" })),
+              score.voice(score.notes(parts2[1] + "/1, ", { clef: "bass" })),
+            ],
+          })
+          .addClef("bass");
+      }
+    } else if (processedNote1.baseNote.includes(" ")) {
+      var parts1 = processedNote1.baseNote.split(" ");
+
+      if (currentMode != "harmonique") {
+        system
+          .addStave({
+            voices: [score.voice(score.notes("B4/1/r, "))],
+          })
+          .addClef("treble");
+
+        system
+          .addStave({
+            voices: [
+              score.voice(
+                score.notes(parts1[0] + "/2, " + processedNote2.baseNote, {
+                  clef: "bass",
+                  stem: "up",
+                })
+              ),
+              score.voice(
+                score.notes(parts1[1] + "/2, " + processedNote2.baseNote, {
+                  clef: "bass",
+                  stem: "down",
+                })
+              ),
+            ],
+          })
+          .addClef("bass");
+      } else {
+        system
+          .addStave({
+            voices: [score.voice(score.notes("B4/1/r, "))],
+          })
+          .addClef("treble");
+
+        system
+          .addStave({
+            voices: [
+              score.voice(score.notes(parts1[0] + "/1, ", { clef: "bass" })),
+              score.voice(score.notes(parts1[1] + "/1, ", { clef: "bass" })),
+              score.voice(
+                score.notes(processedNote2.baseNote + "/1, ", {
+                  clef: "bass",
+                })
+              ),
+            ],
+          })
+          .addClef("bass");
+      }
+    } else if (processedNote2.baseNote.includes(" ")) {
+      var parts2 = processedNote2.baseNote.split(" ");
+
+      if (currentMode != "harmonique") {
+        system
+          .addStave({
+            voices: [score.voice(score.notes("B4/1/r, "))],
+          })
+          .addClef("treble");
+
+        system
+          .addStave({
+            voices: [
+              score.voice(
+                score.notes(processedNote1.baseNote + "/2, " + parts2[0], {
+                  clef: "bass",
+                  stem: "up",
+                })
+              ),
+              score.voice(
+                score.notes(processedNote1.baseNote + "/2, " + parts2[1], {
+                  clef: "bass",
+                  stem: "down",
+                })
+              ),
+            ],
+          })
+          .addClef("bass");
+      } else {
+        system
+          .addStave({
+            voices: [score.voice(score.notes("B4/1/r, "))],
+          })
+          .addClef("treble");
+
+        system
+          .addStave({
+            voices: [
+              score.voice(
+                score.notes(processedNote1.baseNote + "/1, ", {
+                  clef: "bass",
+                })
+              ),
+              score.voice(score.notes(parts2[0] + "/1, ", { clef: "bass" })),
+              score.voice(score.notes(parts2[1] + "/1, ", { clef: "bass" })),
+            ],
+          })
+          .addClef("bass");
+      }
     } else {
-      var abcNotation1 = `X:1
-      L:1/4
-      K:C 
-      %%score (T1)
-      V:T1 clef=bass
-      [V:T1]|${processedNote1.baseNote}|`;
+      if (currentMode != "harmonique") {
+        system
+          .addStave({
+            voices: [score.voice(score.notes("B4/1/r, "))],
+          })
+          .addClef("treble");
 
-      ABCJS.renderAbc(abcDiv1, abcNotation1, {
-        visualTranspose: processedNote1.visualTranspose,
-      });
+        system
+          .addStave({
+            voices: [
+              score.voice(
+                score.notes(
+                  processedNote1.baseNote + "/2, " + processedNote2.baseNote,
+                  { clef: "bass" }
+                )
+              ),
+            ],
+          })
+          .addClef("bass");
+      } else {
+        system
+          .addStave({
+            voices: [score.voice(score.notes("B4/1/r, "))],
+          })
+          .addClef("treble");
+
+        system
+          .addStave({
+            voices: [
+              score.voice(
+                score.notes(processedNote1.baseNote + "/1, ", {
+                  clef: "bass",
+                })
+              ),
+              score.voice(
+                score.notes(processedNote2.baseNote + "/1, ", {
+                  clef: "bass",
+                })
+              ),
+            ],
+          })
+          .addClef("bass");
+      }
     }
   }
 
-  if (keyIndice2 >= 39) {
-    if (processedNote2.baseNote.includes(" ")) {
-      var parts = processedNote2.baseNote.split(" ");
-      var abcNotation2 = `X:1
-      L:1/4
-      K:C 
-      %%score (T1)
-      V:T1 clef=treble
-      [V:T1]|[${parts[0]}${parts[1]}]|`;
-
-      ABCJS.renderAbc(abcDiv2, abcNotation2, {
-        visualTranspose: processedNote2.visualTranspose,
-      });
-    } else {
-      var abcNotation2 = `X:1
-      L:1/4
-      K:C 
-      %%score (T1)
-      V:T1 clef=treble
-      [V:T1]|${processedNote2.baseNote}|`;
-
-      ABCJS.renderAbc(abcDiv2, abcNotation2, {
-        visualTranspose: processedNote2.visualTranspose,
-      });
-    }
-  } else {
-    if (processedNote2.baseNote.includes(" ")) {
-      var parts = processedNote2.baseNote.split(" ");
-      var abcNotation2 = `X:1
-      L:1/4
-      K:C 
-      %%score (T1)
-      V:T1 clef=bass
-      [V:T1]|[${parts[0]}${parts[1]}]|`;
-
-      ABCJS.renderAbc(abcDiv2, abcNotation2, {
-        visualTranspose: processedNote2.visualTranspose,
-      });
-    } else {
-      var abcNotation2 = `X:1
-      L:1/4
-      K:C 
-      %%score (T1)
-      V:T1 clef=bass
-      [V:T1]|${processedNote2.baseNote}|`;
-
-      ABCJS.renderAbc(abcDiv2, abcNotation2, {
-        visualTranspose: processedNote2.visualTranspose,
-      });
-    }
-  }
+  vf.draw();
+  system.addConnector();
 }

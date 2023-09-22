@@ -49,17 +49,21 @@
             </div>
         </div>
 
+        <div id="response" class="music-score-response-container"></div>
         <div class="music-score-container">
-            <div id="response" class="music-score-response-container"></div>
             <div class="staves-container">
-                <div class="width">
-                    <div class="note" id=note1></div>
-                    <div id="music-score1" class="music-score"></div>
+                <div >
+                    <svg id="music-score" width="180" height="300" ></svg>
+                    <div class="notes">
+
+                        <div class="note" id=note1></div>
+                        <div class="note" id=note2></div>
+                    </div>
                 </div>
-                <div class="width">
-                    <div class="note" id=note2></div>
-                    <div id="music-score2" class="music-score"></div>
-                </div>
+                <!-- <div id="music-score" class="music-score"></div> -->
+                <!-- <div class="width"> -->
+                <!-- <div id="music-score2" class="music-score"></div> -->
+                <!-- </div> -->
             </div>
         </div>
 
@@ -150,7 +154,7 @@
 
             <div class="tessiture-slider-container">
                 <div class="tessiture-container">
-                    <h2>Choisissez le registre :</h2>
+                    <h2>Choisissez l'étendue de la tessiture :</h2>
                     <div>
                         <label for="tessiture">De :</label>
                         <span id="tessitureValue"></span>
@@ -171,6 +175,7 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/abcjs/6.2.2/abcjs-basic-min.min.js" integrity="sha512-REXLcx385NL3ZWosam5LzLJoA0AkfeVdW94IQURSM/Gl6EyrS0hS3LtqR094d00lsicEVAprWA5SUTD5oljapg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vexflow@4.2.2/build/cjs/vexflow.js"></script>
 
     <script src="../js/intervalles/variables.js"></script>
     <script src="../js/intervalles/displayNotesOnStave.js"></script>
