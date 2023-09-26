@@ -124,123 +124,123 @@
 
             <div class="intervals-score-container">
 
-                <div class="intervalsScore">
+                <div class="intervalsScore" id="interval0">
                     <div>Taux de réussite Unisson :</div>
                     <div class="progress-wrapper">
                         <div id="percentageValue0" class="progress-value"></div>
                         <progress class="progress-bar" id="Value0" value="0" max="100"></progress>
                     </div>
-                    <div>Intervalles confondus avec Unisson :</div>
+                    <div id="confusedText0" class="confusedText">Intervalles confondus avec Unisson :</div>
                     <div id="confusedIntervals0" class="confusedIntervals"></div>
                 </div>
 
-                <div class="intervalsScore">
+                <div class="intervalsScore" id="interval1">
                     <div>Taux de réussite Seconde mineure :</div>
                     <div class="progress-wrapper">
                         <div id="percentageValue1" class="progress-value"></div>
                         <progress class="progress-bar" id="Value1" value="0" max="100"></progress>
                     </div>
-                    <div>Intervalles confondus avec Seconde mineure :</div>
+                    <div id="confusedText1" class="confusedText">Intervalles confondus avec Seconde mineure :</div>
                     <div id="confusedIntervals1" class="confusedIntervals"></div>
                 </div>
 
-                <div class="intervalsScore">
+                <div class="intervalsScore" id="interval2">
                     <div>Taux de réussite Seconde majeure :</div>
                     <div class="progress-wrapper">
                         <div id="percentageValue2" class="progress-value"></div>
                         <progress class="progress-bar" id="Value2" value="0" max="100"></progress>
                     </div>
-                    <div>Intervalles confondus avec Seconde majeure :</div>
+                    <div id="confusedText2" class="confusedText">Intervalles confondus avec Seconde majeure :</div>
                     <div id="confusedIntervals2" class="confusedIntervals"></div>
                 </div>
 
-                <div class="intervalsScore">
+                <div class="intervalsScore" id="interval3">
                     <div>Taux de réussite Tierce mineure :</div>
                     <div class="progress-wrapper">
                         <div id="percentageValue3" class="progress-value"></div>
                         <progress class="progress-bar" id="Value3" value="0" max="100"></progress>
                     </div>
-                    <div>Intervalles confondus avec Tierce mineure :</div>
+                    <div id="confusedText3" class="confusedText">Intervalles confondus avec Tierce mineure :</div>
                     <div id="confusedIntervals3" class="confusedIntervals"></div>
                 </div>
 
-                <div class="intervalsScore">
+                <div class="intervalsScore" id="interval4">
                     <div>Taux de réussite Tierce majeure :</div>
                     <div class="progress-wrapper">
                         <div id="percentageValue4" class="progress-value"></div>
                         <progress class="progress-bar" id="Value4" value="0" max="100"></progress>
                     </div>
-                    <div>Intervalles confondus avec Tierce majeure :</div>
+                    <div id="confusedText4" class="confusedText">Intervalles confondus avec Tierce majeure :</div>
                     <div id="confusedIntervals4" class="confusedIntervals"></div>
                 </div>
 
-                <div class="intervalsScore">
+                <div class="intervalsScore" id="interval5">
                     <div>Taux de réussite Quarte :</div>
                     <div class="progress-wrapper">
                         <div id="percentageValue5" class="progress-value"></div>
                         <progress class="progress-bar" id="Value5" value="0" max="100"></progress>
                     </div>
-                    <div>Intervalles confondus avec Quarte :</div>
+                    <div id="confusedText5" class="confusedText">Intervalles confondus avec Quarte :</div>
                     <div id="confusedIntervals5" class="confusedIntervals"></div>
                 </div>
 
-                <div class="intervalsScore">
+                <div class="intervalsScore" id="interval6">
                     <div>Taux de réussite Quinte diminuée :</div>
                     <div class="progress-wrapper">
                         <div id="percentageValue6" class="progress-value"></div>
                         <progress class="progress-bar" id="Value6" value="0" max="100"></progress>
                     </div>
-                    <div>Intervalles confondus avec Quinte diminuée :</div>
+                    <div id="confusedText6" class="confusedText">Intervalles confondus avec Quinte diminuée :</div>
                     <div id="confusedIntervals6" class="confusedIntervals"></div>
                 </div>
 
-                <div class="intervalsScore">
+                <div class="intervalsScore" id="interval7">
                     <div>Taux de réussite Quinte :</div>
                     <div class="progress-wrapper">
                         <div id="percentageValue7" class="progress-value"></div>
                         <progress class="progress-bar" id="Value7" value="0" max="100"></progress>
                     </div>
-                    <div>Intervalles confondus avec Quinte :</div>
+                    <div id="confusedText7" class="confusedText">Intervalles confondus avec Quinte :</div>
                     <div id="confusedIntervals7" class="confusedIntervals"></div>
                 </div>
 
-                <div class="intervalsScore">
+                <div class="intervalsScore" id="interval8">
                     <div>Taux de réussite Sixte mineure :</div>
                     <div class="progress-wrapper">
                         <div id="percentageValue8" class="progress-value"></div>
                         <progress class="progress-bar" id="Value8" value="0" max="100"></progress>
                     </div>
-                    <div>Intervalles confondus avec Sixte mineure :</div>
+                    <div id="confusedText8" class="confusedText">Intervalles confondus avec Sixte mineure :</div>
                     <div id="confusedIntervals8" class="confusedIntervals"></div>
                 </div>
 
-                <div class="intervalsScore">
+                <div class="intervalsScore" id="interval9">
                     <div>Taux de réussite Sixte majeure :</div>
                     <div class="progress-wrapper">
                         <div id="percentageValue9" class="progress-value"></div>
                         <progress class="progress-bar" id="Value9" value="0" max="100"></progress>
                     </div>
-                    <div>Intervalles confondus avec Sixte majeure :</div>
+                    <div id="confusedText9" class="confusedText">Intervalles confondus avec Sixte majeure :</div>
                     <div id="confusedIntervals9" class="confusedIntervals"></div>
                 </div>
 
-                <div class="intervalsScore">
+                <div class="intervalsScore" id="interval10">
                     <div>Taux de réussite Septième mineure :</div>
                     <div class="progress-wrapper">
                         <div id="percentageValue10" class="progress-value"></div>
                         <progress class="progress-bar" id="Value10" value="0" max="100"></progress>
                     </div>
-                    <div>Intervalles confondus avec Septième mineure :</div>
+                    <div id="confusedText10" class="confusedText">Intervalles confondus avec Septième mineure :</div>
                     <div id="confusedIntervals10" class="confusedIntervals"></div>
                 </div>
 
-                <div class="intervalsScore">
+                <div class="intervalsScore" id="interval11">
                     <div>Taux de réussite Septième majeure :</div>
                     <div class="progress-wrapper">
                         <div id="percentageValue11" class="progress-value"></div>
                         <progress class="progress-bar" id="Value11" value="0" max="100"></progress>
                     </div>
-                    <div>Intervalles confondus avec Septième majeure :</div>
+                    <div id="confusedText11" class="confusedText">Intervalles confondus avec Septième majeure :</div>
                     <div id="confusedIntervals11" class="confusedIntervals"></div>
                 </div>
 

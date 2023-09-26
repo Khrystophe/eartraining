@@ -29,7 +29,11 @@ const intervalToDistance = {
 // Fonction pour mettre à jour les résultats par intervalle
 function updateIntervalResults(interval, isCorrect, userResponse) {
   if (!intervalResults[interval]) {
-    intervalResults[interval] = { generated: 0, correct: 0, incorrectAnswers: [] };
+    intervalResults[interval] = {
+      generated: 0,
+      correct: 0,
+      incorrectAnswers: [],
+    };
   }
   intervalResults[interval].generated++;
   if (!isCorrect) {
@@ -48,20 +52,33 @@ function updateIntervalProgressBars() {
   for (var interval in intervalResults) {
     var id = intervalToDistance[interval];
 
-    var progressBar = document.getElementById("Value" + id);
+    //Afficher la div concerant l'intevralle
+    var intervalDiv = document.getElementById("interval" + id);
+    intervalDiv.style.display = "flex";
 
-    var percentageDiv = document.getElementById("percentageValue" + id);
-
-    var confusedIntervals = document.getElementById("confusedIntervals" + id);
-
+    // Données sur l'intervalle
     var intervalData = intervalResults[interval];
 
+    // Calculer le taux de réussite
     var successRate = Math.round(
       (intervalData.correct / intervalData.generated) * 100
     );
 
+    // Mettre à jour la barre de progression
+    var progressBar = document.getElementById("Value" + id);
     progressBar.value = successRate;
+
+    // Mettre à jour le pourcentage
+    var percentageDiv = document.getElementById("percentageValue" + id);
     percentageDiv.textContent = successRate + "%";
+
+    // Mettre à jour le nombre d'erreurs par intervalle
+    var confusedIntervals = document.getElementById("confusedIntervals" + id);
     confusedIntervals.textContent = intervalData.incorrectAnswers;
+
+    if(confusedIntervals.textContent != ""){
+      var confusedText = document.getElementById("confusedText" + id);
+      confusedText.style.display = "flex";
+    }
   }
 }

@@ -294,13 +294,15 @@ svg:not(:root) {
 }
 
 .intervalsScore {
-  display: flex;
+  display: none;
   flex-direction: column;
-  /* align-items: center; */
   background-color: #353535;
   margin-bottom: 1rem;
+  padding: 0.5rem;
 }
-
+.confusedText{
+  display: none;
+}
 .confusedIntervals{
   font-weight: 400;
 }

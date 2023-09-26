@@ -36,6 +36,11 @@ showReponseButton.addEventListener("click", function () {
     octave = Math.floor(distance / 12);
     interval = getIntervalName(distance);
 
+    
     displayNotesOnStave(initialNote1, initialNote2);
   }
+
+  // Mettre à jour les résultats
+  updateIntervalResults(interval, false); 
+  updateIntervalProgressBars();
 });
