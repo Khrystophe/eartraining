@@ -27,18 +27,23 @@ const intervalToDistance = {
 };
 
 // Fonction pour mettre à jour les résultats par intervalle
-function updateIntervalResults(interval, isCorrect) {
+function updateIntervalResults(interval, isCorrect, userResponse) {
   if (!intervalResults[interval]) {
-    intervalResults[interval] = { generated: 0, correct: 0 };
+    intervalResults[interval] = { generated: 0, correct: 0, incorrectAnswers: [] };
   }
   intervalResults[interval].generated++;
-  if (isCorrect) {
+  if (!isCorrect) {
+    // Vérifier si la réponse incorrecte n'est pas déjà dans le tableau
+    if (!intervalResults[interval].incorrectAnswers.includes(userResponse)) {
+      intervalResults[interval].incorrectAnswers.push(userResponse);
+    }
+  } else {
     intervalResults[interval].correct++;
   }
 }
-
 // Fonction pour mettre à jour les barres de progression
 function updateIntervalProgressBars() {
+  console.log(intervalResults);
   // Parcourez les intervalles et créez une barre de progression pour chacun
   for (var interval in intervalResults) {
     var id = intervalToDistance[interval];
@@ -46,6 +51,8 @@ function updateIntervalProgressBars() {
     var progressBar = document.getElementById("Value" + id);
 
     var percentageDiv = document.getElementById("percentageValue" + id);
+
+    var confusedIntervals = document.getElementById("confusedIntervals" + id);
 
     var intervalData = intervalResults[interval];
 
@@ -55,5 +62,6 @@ function updateIntervalProgressBars() {
 
     progressBar.value = successRate;
     percentageDiv.textContent = successRate + "%";
+    confusedIntervals.textContent = intervalData.incorrectAnswers;
   }
 }

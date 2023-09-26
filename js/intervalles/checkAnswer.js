@@ -78,7 +78,7 @@ function checkAnswer(userResponse, button) {
 
     updateProgressBar(score, numberOfAnswers);
 
-    updateIntervalResults(interval, false); // Mettez à jour les résultats avec une réponse correcte
+    updateIntervalResults(interval, false, userResponse); // Mettez à jour les résultats avec une réponse correcte
     updateIntervalProgressBars();
 
     button.classList.add("reponse-incorrecte");
