@@ -45,14 +45,15 @@ function updateIntervalResults(interval, isCorrect, userResponse) {
     intervalResults[interval].correct++;
   }
 }
-// Fonction pour mettre à jour les barres de progression
+// Fonction pour mettre à jour les barres de progression// Fonction pour mettre à jour les barres de progression
 function updateIntervalProgressBars() {
   console.log(intervalResults);
+
   // Parcourez les intervalles et créez une barre de progression pour chacun
   for (var interval in intervalResults) {
     var id = intervalToDistance[interval];
 
-    //Afficher la div concerant l'intevralle
+    //Afficher la div concernant l'intervalle
     var intervalDiv = document.getElementById("interval" + id);
     intervalDiv.style.display = "flex";
 
@@ -74,9 +75,23 @@ function updateIntervalProgressBars() {
 
     // Mettre à jour le nombre d'erreurs par intervalle
     var confusedIntervals = document.getElementById("confusedIntervals" + id);
-    confusedIntervals.textContent = intervalData.incorrectAnswers;
+    // Supprimer tout le contenu existant
+    while (confusedIntervals.firstChild) {
+      confusedIntervals.removeChild(confusedIntervals.firstChild);
+    }
 
-    if(confusedIntervals.textContent != ""){
+    // Trier les incorrectAnswers dans le même ordre que intervalToDistance
+    var sortedIncorrectAnswers = intervalData.incorrectAnswers.slice().sort(function(a, b) {
+      return intervalToDistance[a] - intervalToDistance[b];
+    });
+
+    sortedIncorrectAnswers.forEach(function(answer) {
+      var line = document.createElement("div");
+      line.textContent = answer;
+      confusedIntervals.appendChild(line);
+    });
+
+    if (confusedIntervals.textContent !== "") {
       var confusedText = document.getElementById("confusedText" + id);
       confusedText.style.display = "flex";
     }
