@@ -27,8 +27,6 @@ for (let i = 1; i <= 12; i++) {
   const selectButton = document.getElementById(`select-interval-${i}`);
   selectButton.addEventListener("click", function () {
     intervalKey = `interval-${i}`;
-    console.log(intervalKey);
-    console.log(selectedIntervals[intervalKey]);
 
     // Vérifier si selectedIntervals[intervalKey] n'est pas déjà présent dans intervalIndices
     if (!intervalIndices.includes(selectedIntervals[intervalKey])) {
@@ -54,7 +52,5 @@ for (let i = 1; i <= 12; i++) {
 
       selectButton.classList.remove("selected-interval");
     }
-
-    console.log(intervalIndices);
   });
 }

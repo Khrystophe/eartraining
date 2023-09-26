@@ -52,8 +52,8 @@
         <div id="response" class="music-score-response-container"></div>
         <div class="music-score-container">
             <div class="staves-container">
-                <div >
-                    <svg id="music-score" width="180" height="300" ></svg>
+                <div>
+                    <svg id="music-score" width="180" height="300"></svg>
                     <div class="notes">
 
                         <div class="note" id=note1></div>
@@ -121,6 +121,81 @@
     <div class="settings-modal" id="modalContainer">
         <!-- Modal Content -->
         <div class="settings-modal-content">
+
+            <div class="score-container">
+
+                <div>Taux de réussite unisson :</div>
+                <div class="progress-wrapper">
+                    <div id="percentageValue0" class="progress-value">0%</div>
+                    <progress class="progress-bar" id="Value0" value="0" max="100"></progress>
+                </div>
+
+                <div>Taux de réussite Seconde mineure :</div>
+                <div class="progress-wrapper">
+                    <div id="percentageValue1" class="progress-value">0%</div>
+                    <progress class="progress-bar" id="Value1" value="0" max="100"></progress>
+                </div>
+
+                <div>Taux de réussite Seconde majeure :</div>
+                <div class="progress-wrapper">
+                    <div id="percentageValue2" class="progress-value">0%</div>
+                    <progress class="progress-bar" id="Value2" value="0" max="100"></progress>
+                </div>
+
+                <div>Taux de réussite Tierce mineure :</div>
+                <div class="progress-wrapper">
+                    <div id="percentageValue3" class="progress-value">0%</div>
+                    <progress class="progress-bar" id="Value3" value="0" max="100"></progress>
+                </div>
+
+                <div>Taux de réussite Tierce majeure :</div>
+                <div class="progress-wrapper">
+                    <div id="percentageValue4" class="progress-value">0%</div>
+                    <progress class="progress-bar" id="Value4" value="0" max="100"></progress>
+                </div>
+
+                <div>Taux de réussite Quarte :</div>
+                <div class="progress-wrapper">
+                    <div id="percentageValue5" class="progress-value">0%</div>
+                    <progress class="progress-bar" id="Value5" value="0" max="100"></progress>
+                </div>
+
+                <div>Taux de réussite Quinte diminuée :</div>
+                <div class="progress-wrapper">
+                    <div id="percentageValue6" class="progress-value">0%</div>
+                    <progress class="progress-bar" id="Value6" value="0" max="100"></progress>
+                </div>
+
+                <div>Taux de réussite Quinte :</div>
+                <div class="progress-wrapper">
+                    <div id="percentageValue7" class="progress-value">0%</div>
+                    <progress class="progress-bar" id="Value7" value="0" max="100"></progress>
+                </div>
+
+                <div>Taux de réussite Sixte mineure :</div>
+                <div class="progress-wrapper">
+                    <div id="percentageValue8" class="progress-value">0%</div>
+                    <progress class="progress-bar" id="Value8" value="0" max="100"></progress>
+                </div>
+                <div>Taux de réussite Sixte majeure :</div>
+                <div class="progress-wrapper">
+                    <div id="percentageValue9" class="progress-value">0%</div>
+                    <progress class="progress-bar" id="Value9" value="0" max="100"></progress>
+                </div>
+
+                <div>Taux de réussite Septième mineure :</div>
+                <div class="progress-wrapper">
+                    <div id="percentageValue10" class="progress-value">0%</div>
+                    <progress class="progress-bar" id="Value10" value="0" max="100"></progress>
+                </div>
+
+                <div>Taux de réussite Septième majeure :</div>
+                <div class="progress-wrapper">
+                    <div id="percentageValue11" class="progress-value">0%</div>
+                    <progress class="progress-bar" id="Value11" value="0" max="100"></progress>
+                </div>
+
+            </div>
 
             <h2>Choisissez les intervalles :</h2>
 
@@ -196,6 +271,7 @@
     <script src="../js/intervalles/autoReadingButton.js"></script>
     <script src="../js/intervalles/updateProgressBar.js"></script>
     <script src="../js/intervalles/modal.js"></script>
+    <script src="../js/intervalles/responseText.js"></script>
 
 </body>
 

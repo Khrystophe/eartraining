@@ -1,49 +1,13 @@
 // Affichage des notes sur la portée et de leur nom
 
 function displayNotesOnStave(note1, note2) {
+  responseText();
+
   var vf = new Vex.Flow.Factory({ renderer: { elementId: "music-score" } });
   var score = vf.EasyScore();
   var system = vf.System();
 
-  // // Création des divs pour les portées et le nom des notes
-  var responsetext = document.createElement("h5");
-  responsetext.classList.add("responseText-h5");
-  document.getElementById("response").appendChild(responsetext);
-
-  if (!answerRevealed) {
-    if (octave >= 1 && interval != "Unisson") {
-      responsetext.textContent =
-        "Bien joué ! La réponse est :\n" +
-        octave +
-        " oct. + " +
-        interval +
-        " " +
-        currentMode;
-    } else if (octave >= 1 && interval == "Unisson") {
-      responsetext.textContent =
-        "Bien joué ! La réponse est :\n" + octave + " oct. " + currentMode;
-    } else {
-      responsetext.textContent =
-        "Bien joué ! La réponse est :\n" + interval + " " + currentMode;
-    }
-  } else {
-    if (octave >= 1 && interval != "Unisson") {
-      responsetext.textContent =
-        "Persévérez ! La réponse était :\n" +
-        octave +
-        " oct. + " +
-        interval +
-        " " +
-        currentMode;
-    } else if (octave >= 1 && interval == "Unisson") {
-      responsetext.textContent =
-        "Persévérez ! La réponse était :\n" + octave + " oct. " + currentMode;
-    } else {
-      responsetext.textContent =
-        "Persévérez ! La réponse était :\n" + interval + " " + currentMode;
-    }
-  }
-
+  // Création des divs pour le nom des notes
   var textNote1 = document.createElement("div");
   document.getElementById("note1").appendChild(textNote1);
 
@@ -54,8 +18,6 @@ function displayNotesOnStave(note1, note2) {
   var indice1 = gammeChromatique.indexOf(note1);
   var indice2 = gammeChromatique.indexOf(note2);
 
-  console.log(indice1);
-  console.log(indice2);
   // Pour déterminer quelle clé utiliser
   var keyIndice1 = "";
   var keyIndice2 = "";
@@ -65,46 +27,20 @@ function displayNotesOnStave(note1, note2) {
   var processedNote2 = {};
 
   // Pour afficher le noms des notes correspondantes à la portée suivant le mode et afficher clé de sol ou fa
-  if (currentMode === "ascendante") {
-    if (indice1 < indice2) {
-      processedNote1 = processNote(note1);
-      keyIndice1 = indice1;
-      textNote1.textContent = processedNote1.name;
-      processedNote2 = processNote(note2);
-      keyIndice2 = indice2;
-      textNote2.textContent = processedNote2.name;
-    } else {
-      processedNote1 = processNote(note2);
-      keyIndice1 = indice2;
-      textNote1.textContent = processedNote1.name;
-      processedNote2 = processNote(note1);
-      keyIndice2 = indice1;
-      textNote2.textContent = processedNote2.name;
-    }
-  } else if (currentMode === "descendante") {
-    if (indice1 > indice2) {
-      processedNote1 = processNote(note1);
-      keyIndice1 = indice1;
-      textNote1.textContent = processedNote1.name;
-      processedNote2 = processNote(note2);
-      keyIndice2 = indice2;
-      textNote2.textContent = processedNote2.name;
-    } else {
-      processedNote1 = processNote(note2);
-      keyIndice1 = indice2;
-      textNote1.textContent = processedNote1.name;
-      processedNote2 = processNote(note1);
-      keyIndice2 = indice1;
-      textNote2.textContent = processedNote2.name;
-    }
-  } else if (currentMode === "harmonique" || currentMode === "repété") {
-    processedNote1 = processNote(note1);
-    keyIndice1 = indice1;
-    textNote1.textContent = processedNote1.name;
-    processedNote2 = processNote(note2);
-    keyIndice2 = indice2;
-    textNote2.textContent = processedNote2.name;
-  }
+  let [firstNote, secondNote, firstIndice, secondIndice] =
+    (currentMode === "ascendante" && indice1 > indice2) ||
+    (currentMode === "descendante" && indice1 < indice2) ||
+    (currentMode === "harmonique" && indice1 > indice2)
+      ? [note2, note1, indice2, indice1]
+      : [note1, note2, indice1, indice2];
+
+  processedNote1 = processNote(firstNote);
+  keyIndice1 = firstIndice;
+  textNote1.textContent = processedNote1.name;
+
+  processedNote2 = processNote(secondNote);
+  keyIndice2 = secondIndice;
+  textNote2.textContent = processedNote2.name;
 
   if (keyIndice1 >= 39 && keyIndice2 >= 39) {
     if (
@@ -113,9 +49,6 @@ function displayNotesOnStave(note1, note2) {
     ) {
       var parts1 = processedNote1.baseNote.split(" ");
       var parts2 = processedNote2.baseNote.split(" ");
-
-      console.log(parts1);
-      console.log(parts2);
 
       if (currentMode != "harmonique") {
         system
@@ -277,8 +210,6 @@ function displayNotesOnStave(note1, note2) {
       }
     }
   } else if (keyIndice1 >= 39 && keyIndice2 < 39) {
-    console.log(keyIndice1);
-    console.log(keyIndice2);
     if (
       processedNote1.baseNote.includes(" ") &&
       processedNote2.baseNote.includes(" ")
@@ -467,8 +398,6 @@ function displayNotesOnStave(note1, note2) {
         .addClef("bass");
     }
   } else if (keyIndice1 < 39 && keyIndice2 >= 39) {
-    console.log(keyIndice1);
-    console.log(keyIndice2);
     if (
       processedNote1.baseNote.includes(" ") &&
       processedNote2.baseNote.includes(" ")
@@ -602,16 +531,17 @@ function displayNotesOnStave(note1, note2) {
           })
           .addClef("treble");
 
-        system.addStave({
-          voices: [
-            score.voice(
-              score.notes(processedNote1.baseNote + "/2, " + "D3/2/r, ", {
-                clef: "bass",
-              })
-            ),
-          ],
-        })
-        .addClef("bass");
+        system
+          .addStave({
+            voices: [
+              score.voice(
+                score.notes(processedNote1.baseNote + "/2, " + "D3/2/r, ", {
+                  clef: "bass",
+                })
+              ),
+            ],
+          })
+          .addClef("bass");
       } else {
         system
           .addStave({

@@ -8,7 +8,7 @@ reponseButtons.forEach(function (button) {
 reponseButtons.forEach(function (button) {
   button.addEventListener("click", function () {
     var distance = parseInt(button.getAttribute("data-distance"));
-    console.log(distance);
+  
     var userResponse = getIntervalName(distance);
 
     // Vérification de la réponse seuelemnent si un interval a été généré et que la reponse n'a pas été révélée

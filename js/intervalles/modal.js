@@ -1,7 +1,6 @@
 function openModal() {
   var modal = document.getElementById("modalContainer");
   modal.style.display = "flex";
-  modal.style.alignItems = "center";
 }
 
 function closeModal() {

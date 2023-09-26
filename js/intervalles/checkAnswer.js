@@ -29,6 +29,9 @@ function checkAnswer(userResponse, button) {
     numberOfAnswers++;
 
     updateProgressBar(score, numberOfAnswers);
+
+    updateIntervalResults(interval, true); // Mettez à jour les résultats avec une réponse correcte
+    updateIntervalProgressBars();
   } else if (userResponse === interval && !autoReading) {
     clearStaves();
 
@@ -67,10 +70,16 @@ function checkAnswer(userResponse, button) {
     numberOfAnswers++;
 
     updateProgressBar(score, numberOfAnswers);
+
+    updateIntervalResults(interval, true); // Mettez à jour les résultats avec une réponse correcte
+    updateIntervalProgressBars();
   } else {
     numberOfAnswers++;
 
     updateProgressBar(score, numberOfAnswers);
+
+    updateIntervalResults(interval, false); // Mettez à jour les résultats avec une réponse correcte
+    updateIntervalProgressBars();
 
     button.classList.add("reponse-incorrecte");
     button.setAttribute("disabled", "disabled");
