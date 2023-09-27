@@ -5,8 +5,13 @@ function generateNewNotes() {
     }
   });
 
-  var startTessiture = parseInt(tessitureSlider.value);
-  var endTessiture = parseInt(tessitureSlider2.value);
+  if (noteIndex1 < noteIndex2) {
+    var startTessiture = noteIndex1;
+    var endTessiture = noteIndex2;
+  } else {
+    var startTessiture = noteIndex2;
+    var endTessiture = noteIndex1;
+  }
 
   var validIntervalFound = false;
 
@@ -14,17 +19,23 @@ function generateNewNotes() {
     var indice1 =
       Math.floor(Math.random() * (endTessiture - startTessiture + 1)) +
       startTessiture;
+    console.log("11", indice1);
     var indice2 =
       Math.floor(Math.random() * (endTessiture - startTessiture + 1)) +
       startTessiture;
+    console.log("22", indice2);
 
     var newNote1 = gammeChromatique[indice1];
     var newNote2 = gammeChromatique[indice2];
+
     initialNote1 = newNote1;
     initialNote2 = newNote2;
 
-    var indice1 = gammeChromatique.indexOf(newNote1);
-    var indice2 = gammeChromatique.indexOf(newNote2);
+    // var indice1 = gammeChromatique.indexOf(newNote1);
+    // var indice2 = gammeChromatique.indexOf(newNote2);
+
+    // console.log("33", indice1);
+    // console.log("44", indice2);
 
     var distance = Math.abs(indice2 - indice1);
 

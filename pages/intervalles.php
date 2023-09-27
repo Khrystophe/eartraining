@@ -154,19 +154,20 @@
                     </div>
                 </div>
 
+                <h2>Choisissez l'étendue de la tessiture :</h2>
+                
                 <div class="tessiture-slider-container">
                     <div class="tessiture-container">
-                        <h2>Choisissez l'étendue de la tessiture :</h2>
-                        <div>
-                            <label for="tessiture">De :</label>
-                            <span id="tessitureValue"></span>
-                        </div>
-                        <input type="range" id="tessiture" class="form-range" name="tessiture" min="0" max="87" step="1">
-                        <div>
-                            <label for="tessiture2">à :</label>
-                            <span id="tessitureValue2"></span>
-                        </div>
-                        <input type="range" id="tessiture2" class="form-range" name="tessiture2" min="0" max="87" step="1">
+
+                        <section class="range-slider container">
+                            <span class="output1 outputOne"></span>
+                            <span class="output2 outputTwo"></span>
+                            <span class="full-range"></span>
+                            <span class="incl-range"></span>
+                            <input name="rangeOne" value="39" min="0" max="87" step="1" type="range">
+                            <input name="rangeTwo" value="51" min="0" max="87" step="1" type="range">
+                        </section>
+
                     </div>
                 </div>
 

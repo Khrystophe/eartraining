@@ -39,7 +39,7 @@ session_start();
                         <a class="nav-link" href="./intervalles.php">Reconnaissance d'intervalles</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Contact</a>
+                        <a class="nav-link" href="./test.php">Contact</a>
                     </li>
                 </ul>
             </div>

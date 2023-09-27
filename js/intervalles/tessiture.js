@@ -1,32 +1,71 @@
+var noteIndex1 = 0;
+var noteIndex2 = 0;
 
-// Gestion des curseurs de tessiture
-var tessitureSlider = document.getElementById("tessiture");
-var tessitureValue = document.getElementById("tessitureValue");
+var rangeOne = document.querySelector('input[name="rangeOne"]');
+var rangeTwo = document.querySelector('input[name="rangeTwo"]');
+var outputOne = document.querySelector(".outputOne");
+var outputTwo = document.querySelector(".outputTwo");
+var inclRange = document.querySelector(".incl-range");
 
-var tessitureSlider2 = document.getElementById("tessiture2");
-var tessitureValue2 = document.getElementById("tessitureValue2");
+var updateView = function () {
+  if (this.getAttribute("name") === "rangeOne") {
+    noteIndex1 = parseInt(this.value);
+    console.log(noteIndex1);
+    outputOne.innerHTML = gammeChromatique[noteIndex1];
+    outputOne.style.left =
+      (noteIndex1 / (this.getAttribute("max") - this.getAttribute("min"))) *
+        100 +
+      "%";
+  } else {
+    noteIndex2 = parseInt(this.value);
+    console.log(noteIndex2);
+    outputTwo.style.left =
+      (noteIndex2 / (this.getAttribute("max") - this.getAttribute("min"))) *
+        100 +
+      "%";
+    outputTwo.innerHTML = gammeChromatique[noteIndex2];
+  }
 
-// Set initial values
-tessitureSlider.value = gammeChromatique.indexOf("C4");
-tessitureValue.textContent = gammeChromatique[tessitureSlider.value];
+  if (parseInt(rangeOne.value) > parseInt(rangeTwo.value)) {
+    inclRange.style.width =
+      ((rangeOne.value - rangeTwo.value) /
+        (rangeOne.getAttribute("max") - rangeOne.getAttribute("min"))) *
+        100 +
+      "%";
+    inclRange.style.left =
+      (rangeTwo.value /
+        (rangeOne.getAttribute("max") - rangeOne.getAttribute("min"))) *
+        100 +
+      "%";
+  } else {
+    inclRange.style.width =
+      ((rangeTwo.value - rangeOne.value) /
+        (rangeOne.getAttribute("max") - rangeOne.getAttribute("min"))) *
+        100 +
+      "%";
+    inclRange.style.left =
+      (rangeOne.value /
+        (rangeOne.getAttribute("max") - rangeOne.getAttribute("min"))) *
+        100 +
+      "%";
+  }
+};
 
-tessitureSlider2.value = gammeChromatique.indexOf("C5");
-tessitureValue2.textContent = gammeChromatique[tessitureSlider2.value];
+document.addEventListener("DOMContentLoaded", function () {
+  updateView.call(rangeOne);
+  updateView.call(rangeTwo);
 
-// Mise à jour de la tessiture de départ
-tessitureSlider.addEventListener("input", function () {
-  var startTessiture = parseInt(tessitureSlider.value);
-  tessitureValue.textContent = gammeChromatique[startTessiture];
+  var rangeInputs = document.querySelectorAll('input[type="range"]');
 
-  // Mettre à jour la valeur minimale du deuxième curseur
-  tessitureSlider2.min = startTessiture + 12; // Increase by 1 octave
-});
+  rangeInputs.forEach(function (input) {
+    input.addEventListener("mouseup", function () {
+      this.blur();
+    });
 
-// Mise à jour de la tessiture de fin
-tessitureSlider2.addEventListener("input", function () {
-  var endTessiture = parseInt(tessitureSlider2.value);
-  tessitureValue2.textContent = gammeChromatique[endTessiture];
-
-  // Mettre à jour la valeur maximale du premier curseur
-  tessitureSlider.max = endTessiture - 12; // Decrease by 1 octave
+    input.addEventListener("mousedown", function () {
+      input.addEventListener("input", function () {
+        updateView.call(this);
+      });
+    });
+  });
 });
