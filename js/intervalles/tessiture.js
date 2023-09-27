@@ -68,4 +68,45 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     });
   });
+
+  // Gestionnaire d'événement de clic pour outputOne
+  outputOne.addEventListener("mousedown", function () {
+    isOutputOneDragging = true;
+  });
+
+  // Gestionnaire d'événement de clic pour outputTwo
+  outputTwo.addEventListener("mousedown", function () {
+    isOutputTwoDragging = true;
+  });
+
+  document.addEventListener("mousemove", function (event) {
+    if (isOutputOneDragging) {
+      var rect = rangeOne.getBoundingClientRect();
+      var clickX = event.clientX - rect.left;
+      var percent = (clickX / rect.width) * 100;
+      var newValue = Math.round(
+        (percent / 100) *
+          (rangeOne.getAttribute("max") - rangeOne.getAttribute("min"))
+      );
+      rangeOne.value = newValue;
+      updateView.call(rangeOne);
+    }
+
+    if (isOutputTwoDragging) {
+      var rect = rangeTwo.getBoundingClientRect();
+      var clickX = event.clientX - rect.left;
+      var percent = (clickX / rect.width) * 100;
+      var newValue = Math.round(
+        (percent / 100) *
+          (rangeTwo.getAttribute("max") - rangeTwo.getAttribute("min"))
+      );
+      rangeTwo.value = newValue;
+      updateView.call(rangeTwo);
+    }
+  });
+
+  document.addEventListener("mouseup", function () {
+    isOutputOneDragging = false;
+    isOutputTwoDragging = false;
+  });
 });

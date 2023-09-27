@@ -8,7 +8,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <title>Reconnaissance d'intervalles</title>
 
-    <link rel="stylesheet" href="../assets/css/intervalles.css" />
+    <link rel="stylesheet" href="../assets/css/intervalles/intervalles.css" />
+    <link rel="stylesheet" href="../assets/css/intervalles/slider.css" />
 </head>
 
 <body>
@@ -60,10 +61,6 @@
                         <div class="note" id=note2></div>
                     </div>
                 </div>
-                <!-- <div id="music-score" class="music-score"></div> -->
-                <!-- <div class="width"> -->
-                <!-- <div id="music-score2" class="music-score"></div> -->
-                <!-- </div> -->
             </div>
         </div>
 
@@ -155,7 +152,7 @@
                 </div>
 
                 <h2>Choisissez l'étendue de la tessiture :</h2>
-                
+
                 <div class="tessiture-slider-container">
                     <div class="tessiture-container">
 
