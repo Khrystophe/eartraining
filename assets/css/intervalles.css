@@ -262,6 +262,8 @@ h2 {
 
 .settings-modal {
   display: none;
+  flex-direction: column;
+  justify-content: center;
   position: fixed;
   top: 0;
   left: 0;
@@ -269,25 +271,32 @@ h2 {
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 9999;
-  overflow-y: auto;
 }
 
 .settings-modal-content {
-  background-color: #282828;
-  width: 90%;
-  max-width: 850px;
-  height: max-content;
-  margin: 40px auto;
   padding: 20px;
+  overflow-y: auto;
+}
+.close-modal-button {
+  background-color: #282828;
+  max-width: 90vw;
+  margin: 40px auto;
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   display: flex;
   flex-direction: column;
+  overflow-y: auto;
+}
+
+.close-modal{
+  margin: 1rem;
 }
 
 .close-modal:hover svg path {
   fill: black;
 }
+
+/* voir les notes les plus hauts ou basses */
 svg:not(:root) {
   overflow-clip-margin: content-box;
   overflow: visible !important;
@@ -300,9 +309,9 @@ svg:not(:root) {
   margin-bottom: 1rem;
   padding: 0.5rem;
 }
-.confusedText{
+.confusedText {
   display: none;
 }
-.confusedIntervals{
+.confusedIntervals {
   font-weight: 400;
 }
