@@ -31,12 +31,6 @@ function generateNewNotes() {
     initialNote1 = newNote1;
     initialNote2 = newNote2;
 
-    // var indice1 = gammeChromatique.indexOf(newNote1);
-    // var indice2 = gammeChromatique.indexOf(newNote2);
-
-    // console.log("33", indice1);
-    // console.log("44", indice2);
-
     var distance = Math.abs(indice2 - indice1);
 
     // Transformer intervalIndices en un tableau d'entiers
