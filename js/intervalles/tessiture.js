@@ -10,7 +10,6 @@ var inclRange = document.querySelector(".incl-range");
 var isOutputOneDragging = false;
 var isOutputTwoDragging = false;
 
-
 var updateView = function () {
   if (this.getAttribute("name") === "rangeOne") {
     noteIndex1 = parseInt(this.value);
@@ -86,6 +85,13 @@ document.addEventListener("DOMContentLoaded", function () {
         updateView.call(this);
       });
     });
+
+    // Gestionnaire d'événement de toucher pour les écrans tactiles
+    input.addEventListener("touchstart", function () {
+      input.addEventListener("input", function () {
+        updateView.call(this);
+      });
+    });
   });
 
   // Gestionnaire d'événement de clic pour outputOne
@@ -95,6 +101,18 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Gestionnaire d'événement de clic pour outputTwo
   outputTwo.addEventListener("mousedown", function () {
+    isOutputTwoDragging = true;
+  });
+
+  // Gestionnaire d'événement de toucher pour les écrans tactiles pour outputOne
+  outputOne.addEventListener("touchstart", function (event) {
+    event.preventDefault(); // Empêche le défilement lors du toucher
+    isOutputOneDragging = true;
+  });
+
+  // Gestionnaire d'événement de toucher pour les écrans tactiles pour outputTwo
+  outputTwo.addEventListener("touchstart", function (event) {
+    event.preventDefault(); // Empêche le défilement lors du toucher
     isOutputTwoDragging = true;
   });
 
@@ -124,7 +142,40 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
+  // Gestionnaire d'événement de touchmove pour les écrans tactiles
+  document.addEventListener("touchmove", function (event) {
+    if (isOutputOneDragging) {
+      var rect = rangeOne.getBoundingClientRect();
+      var touchX = event.touches[0].clientX - rect.left;
+      var percent = (touchX / rect.width) * 100;
+      var newValue = Math.round(
+        (percent / 100) *
+          (rangeOne.getAttribute("max") - rangeOne.getAttribute("min"))
+      );
+      rangeOne.value = newValue;
+      updateView.call(rangeOne);
+    }
+
+    if (isOutputTwoDragging) {
+      var rect = rangeTwo.getBoundingClientRect();
+      var touchX = event.touches[0].clientX - rect.left;
+      var percent = (touchX / rect.width) * 100;
+      var newValue = Math.round(
+        (percent / 100) *
+          (rangeTwo.getAttribute("max") - rangeTwo.getAttribute("min"))
+      );
+      rangeTwo.value = newValue;
+      updateView.call(rangeTwo);
+    }
+  });
+
   document.addEventListener("mouseup", function () {
+    isOutputOneDragging = false;
+    isOutputTwoDragging = false;
+  });
+
+  // Gestionnaire d'événement de touchend pour les écrans tactiles
+  document.addEventListener("touchend", function () {
     isOutputOneDragging = false;
     isOutputTwoDragging = false;
   });
