@@ -17,7 +17,7 @@
 }
 
 body {
-  background: #282828 !important;
+  background: #1b3b2f !important;
   height: 100vh;
   color: black;
   user-select: none;
@@ -26,6 +26,11 @@ body {
 h1,
 h2 {
   text-align: center;
+}
+
+h2 {
+  font-size: 1.3rem !important;
+  color: #808080;
 }
 
 .bg-light {
@@ -126,6 +131,7 @@ h2 {
 .tessiture-slider-container {
   display: flex;
   justify-content: center;
+  height: 120px;
 }
 
 .tessiture-container {
@@ -133,15 +139,15 @@ h2 {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-bottom: 1rem;
+  /* margin-bottom: 2rem; */
   height: 90px;
   max-width: 850px;
 }
 
 .btn {
-  border: 3px solid transparent;
+  border: 1px solid transparent;
   background: var(--gradient1);
-  color: #fff;
+  color: #d1d1d1;
   font-weight: 500;
   text-decoration: none;
   transition: all 0.4s ease;
@@ -280,8 +286,15 @@ h2 {
   padding: 20px;
   overflow-y: auto;
 }
+.setting-container {
+  background-color: #095747;
+  margin: 1rem 0 1rem 0;
+  padding: 1rem 0 1rem 0;
+  border-radius: 5px;
+}
+
 .close-modal-button {
-  background-color: #282828;
+  background-color: #1b3b2f;
   max-width: 90vw;
   margin: 40px auto;
   border-radius: 5px;
@@ -291,7 +304,7 @@ h2 {
   overflow-y: auto;
 }
 
-.close-modal{
+.close-modal {
   margin: 1rem;
 }
 
@@ -305,12 +318,18 @@ svg:not(:root) {
   overflow: visible !important;
 }
 
+#title-intervals-score {
+  display: none;
+  flex-direction: column;
+}
+
 .intervalsScore {
   display: none;
   flex-direction: column;
   background-color: #353535;
-  margin-bottom: 1rem;
+  margin: 1rem;
   padding: 0.5rem;
+  border-radius: 5px;
 }
 .confusedText {
   display: none;

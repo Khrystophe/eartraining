@@ -28,13 +28,14 @@
   width: 70px;
   height: 30px;
   text-align: center;
-  color: #999;
+  color: #d1d1d1;
   border-radius: 4px;
   display: inline-block;
   font: bold 15px/30px Helvetica, Arial;
   bottom: 75%;
   left: 50%;
   transform: translate(-50%, 0);
+  background: linear-gradient(to left top, #0059ff 10%, #002d80 90%);
 }
 .output2 {
   position: absolute;
@@ -42,13 +43,14 @@
   width: 70px;
   height: 30px;
   text-align: center;
-  color: #999;
+  color: #d1d1d1;
   border-radius: 4px;
   display: inline-block;
   font: bold 15px/30px Helvetica, Arial;
   bottom: -115%;
   left: 50%;
   transform: translate(-50%, 0);
+  background: linear-gradient(to left top, #0059ff 10%, #002d80 90%);
 }
 
 .range-slider input[type="range"]::-webkit-slider-thumb {
@@ -71,9 +73,9 @@ input[type="range"] {
   border: none;
   padding: 1px 2px;
   border-radius: 14px;
-  background: #232528;
+  background: linear-gradient(to left top, #232528 10%, #1b3b2f 90%);
   box-shadow: inset 0 1px 0 0 #0d0e0f, inset 0 -1px 0 0 #3a3d42;
-  outline: none; 
+  outline: none;
 }
 
 .full-range,
@@ -89,6 +91,6 @@ input[type="range"] {
   border-radius: 14px;
   z-index: 2;
   top: 15px;
-  background: linear-gradient(180deg, #636363, black);
+  background: linear-gradient(to left top, #33ff00 10%, #082d00 90%);
   outline: none;
 }

@@ -49,6 +49,10 @@ function updateIntervalResults(interval, isCorrect, userResponse) {
 function updateIntervalProgressBars() {
   console.log(intervalResults);
 
+  if(intervalResults != {}) {
+    var title = document.getElementById("title-intervals-score");
+    title.style.display = "flex";
+  }
   // Parcourez les intervalles et créez une barre de progression pour chacun
   for (var interval in intervalResults) {
     var id = intervalToDistance[interval];
