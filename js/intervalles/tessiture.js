@@ -7,11 +7,23 @@ var outputOne = document.querySelector(".outputOne");
 var outputTwo = document.querySelector(".outputTwo");
 var inclRange = document.querySelector(".incl-range");
 
+var isOutputOneDragging = false;
+var isOutputTwoDragging = false;
+
+
 var updateView = function () {
   if (this.getAttribute("name") === "rangeOne") {
     noteIndex1 = parseInt(this.value);
     console.log(noteIndex1);
-    outputOne.innerHTML = gammeChromatique[noteIndex1];
+
+    var displayName = gammeChromatique[noteIndex1];
+    if (displayName.includes("-")) {
+      var parts = displayName.split("-");
+      outputOne.innerHTML = parts[1] + "/" + parts[0];
+    } else {
+      outputOne.innerHTML = displayName;
+    }
+
     outputOne.style.left =
       (noteIndex1 / (this.getAttribute("max") - this.getAttribute("min"))) *
         100 +
@@ -23,7 +35,14 @@ var updateView = function () {
       (noteIndex2 / (this.getAttribute("max") - this.getAttribute("min"))) *
         100 +
       "%";
-    outputTwo.innerHTML = gammeChromatique[noteIndex2];
+
+    var displayName = gammeChromatique[noteIndex2];
+    if (displayName.includes("-")) {
+      var parts = displayName.split("-");
+      outputTwo.innerHTML = parts[1] + "/" + parts[0];
+    } else {
+      outputTwo.innerHTML = displayName;
+    }
   }
 
   if (parseInt(rangeOne.value) > parseInt(rangeTwo.value)) {
