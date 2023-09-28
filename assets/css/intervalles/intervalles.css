@@ -88,6 +88,23 @@ h2 {
   text-align: center;
 }
 
+
+/* couleur portée*/
+.vf-stave{
+  stroke: black;
+  fill: black;
+}
+/* couleur interligne portée*/
+path{
+  stroke: black;
+}
+
+/* voir les notes les plus hauts ou basses */
+svg:not(:root) {
+  overflow-clip-margin: content-box;
+  overflow: visible !important;
+}
+
 .responseText-h5 {
   white-space: pre-line;
   font-size: calc(0.7rem + 1vw);
@@ -312,11 +329,6 @@ h2 {
   fill: black;
 }
 
-/* voir les notes les plus hauts ou basses */
-svg:not(:root) {
-  overflow-clip-margin: content-box;
-  overflow: visible !important;
-}
 
 #title-intervals-score {
   display: none;
