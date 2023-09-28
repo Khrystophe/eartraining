@@ -117,6 +117,13 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   document.addEventListener("mousemove", function (event) {
+    // var rect1 = outputOne.getBoundingClientRect();
+    // var rect2 = outputTwo.getBoundingClientRect();
+
+    // var center1X = rect1.left + rect1.width / 2;
+    // var center2X = rect2.left + rect2.width / 2;
+
+    // var distance = Math.abs(center1X - center2X);
     if (isOutputOneDragging) {
       var rect = rangeOne.getBoundingClientRect();
       var clickX = event.clientX - rect.left;
@@ -127,6 +134,15 @@ document.addEventListener("DOMContentLoaded", function () {
       );
       rangeOne.value = newValue;
       updateView.call(rangeOne);
+
+      // if (distance < 70) {
+      //   // La distance est inférieure à 70px, donc nous définissons bottom à -115%
+      //   // pour l'élément que vous déplacez
+      //   outputOne.style.bottom = "-115%";
+      // } else {
+      //   // La distance est supérieure à 70px, nous réinitialisons bottom à 75%
+      //   outputOne.style.bottom = "75%";
+      // }
     }
 
     if (isOutputTwoDragging) {
@@ -139,6 +155,16 @@ document.addEventListener("DOMContentLoaded", function () {
       );
       rangeTwo.value = newValue;
       updateView.call(rangeTwo);
+      // if (distance < 70) {
+      //   // La distance est inférieure à 70px, donc nous définissons bottom à -115%
+      //   // pour l'élément que vous déplacez
+
+      //   outputTwo.style.bottom = "-115%";
+      // } else {
+      //   // La distance est supérieure à 70px, nous réinitialisons bottom à 75%
+
+      //   outputTwo.style.bottom = "75%";
+      // }
     }
   });
 
