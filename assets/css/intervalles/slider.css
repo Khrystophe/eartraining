@@ -1,6 +1,7 @@
 .range-slider {
   position: relative;
   width: 50vw;
+  max-width: 470px;
   height: 35px;
   text-align: center;
 }
@@ -24,8 +25,7 @@
 
 .output1 {
   position: absolute;
-  border: 1px solid #999;
-  width: 70px;
+  width: 60px;
   height: 30px;
   text-align: center;
   color: #d1d1d1;
@@ -36,21 +36,33 @@
   left: 50%;
   transform: translate(-50%, 0);
   background: linear-gradient(to left top, #0059ff 10%, #002d80 90%);
+  font-size: 0.8rem;
+  box-shadow: rgba(255, 255, 255, 0.15) 0px 1px 0px inset, rgba(0, 0, 0, 0.075) 0px 1px 1px;
+  padding: 1px;
 }
 .output2 {
   position: absolute;
-  border: 1px solid #999;
-  width: 70px;
+  width: 60px;
   height: 30px;
   text-align: center;
   color: #d1d1d1;
   border-radius: 4px;
   display: inline-block;
   font: bold 15px/30px Helvetica, Arial;
-  bottom: -115%;
+  bottom: 75%;
   left: 50%;
   transform: translate(-50%, 0);
   background: linear-gradient(to left top, #0059ff 10%, #002d80 90%);
+  font-size: 0.8rem;
+  box-shadow: rgba(255, 255, 255, 0.15) 0px 1px 0px inset, rgba(0, 0, 0, 0.075) 0px 1px 1px;
+  padding: 1px;
+}
+
+@media screen and (max-width: 870px) {
+  .output2 {
+    bottom: -115%;
+  }
+  
 }
 
 .range-slider input[type="range"]::-webkit-slider-thumb {

@@ -119,6 +119,8 @@
         <!-- Modal Content -->
         <div class="close-modal-button">
             <div class="settings-modal-content">
+                
+                <h2>Réglages/Résultats</h2>
 
                 <div class="setting-container">
 
