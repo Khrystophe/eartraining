@@ -5,7 +5,7 @@ function responseText() {
   document.getElementById("response").appendChild(responsetext);
 
   var messagePrefix = answerRevealed
-    ? "Persévérez ! La réponse étaitttt :"
+    ? "Persévérez ! La réponse était :"
     : "Bien joué ! La réponse est :";
 
   var octaveText =
